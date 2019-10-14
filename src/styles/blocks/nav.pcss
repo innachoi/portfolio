@@ -1,0 +1,33 @@
+.nav {
+  display: flex;
+  color: #fff;
+  font-weight: normal;
+}
+
+.nav__list {
+  display: flex;
+}
+
+.nav__item {
+  position: relative;
+  margin-right: 68px;
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.nav__item:hover {
+  color: #ff9a00;
+  transition: .3s;
+
+  &::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    border-bottom: 2px solid #ff9a00;
+    transition: .3s;
+  }
+}

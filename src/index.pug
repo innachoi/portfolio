@@ -10,6 +10,186 @@ html(lang="en")
   body
     .wrapper
       .maincontent
-        +image('content/user.jpg', 'user-pic')
-        +icon('link', 'link-class')
-        .icon-bg
+        //- joined sections
+        .sections-wrapper--one
+          section.welcome
+            .container.welcome__container
+              header.header
+                .header__favicon.favicon
+                  +image('icons/favicon.png', 'favicon__pic')
+                .header__nav-wrapper
+                  +nav('header__nav', ["Главная", "Обо мне", "Навыки", "Работы", "Отзывы", "Связаться"])
+                .header__socials-wrapper
+                  +socials
+              .welcome__main-content
+                .welcome__text
+                  .welcome__text--position--above Личный сайт
+                  .welcome__text--position--under веб-разработчика
+                .welcome__me
+                  .welcome__me-name Инна
+                  .welcome__me-lname Цой
+              .welcome__btns
+                .scroll
+                  a.scroll__nav
+                    .scroll__nav-text Скролл
+                    +icon('scroll', 'scroll__nav-icon') 
+          section.about
+            .container.about__container
+              .about__left
+                .user
+                  .avatar.user__avatar
+                    +image('content/my_photo.jpg', 'avatar-pic')
+                  
+                  //- ul.user__profile
+                  //-   -
+                  //-     var items = [
+                  //-       ["Проживаю: ", "Москва"],
+                  //-       ["Возраст: ", "26 лет"],
+                  //-       ["Родилась: ", "30 августа 1993 года"]
+                  //-     ]
+                    
+                  //-   each item in items 
+                  //-     li.user__profile__item
+                  //-       .user__key #{item[0]}
+                  //-       .user__value #{item[1]}
+
+                table.user__profile
+                  tbody
+                    tr.profile__row
+                      td.profile__key Проживаю:
+                      td.profile__value Москва
+                    tr.profile__row
+                      td.profile__key Возраст:
+                      td.profile__value 26 лет
+                    tr.profile__row
+                      td.profile__key Родилась:
+                      td.profile__value 30 августа 1993
+
+              .about__right
+                .about__hello
+                  .about__hello-intro Привет, меня зовут
+                  h2.title.about__title Инна Цой
+                  .about__hello-text
+                    p Я занимаюсь разработкой современных сайтов и приложений. Мне нравится делать интересные и современные проекты.
+                .about__add
+                  p Этот сайт я сделала в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
+
+        //- section Skills
+        section.skills
+          .container.skills__container
+            .skills__text-content
+              h3.subtitle Чем я могу быть полезна вам
+              .skills__desc
+                p Этот сайт я сделалa в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
+            .skills__graphs
+              .skills__area.skills__area--front-end
+                h4.skills__subtitle.subtitle-two Front-end
+                +skillsGraphs("front-end", ["html", "css", "js", "jquery"], ["HTML5", "CSS3", "Javascript", "Jquery и Vue.js"])
+              .skills__area.skills__area--workflow
+                h4.skills__subtitle.subtitle-two Workflow
+                +skillsGraphs("workflow", ["git", "terminal", "gulp", "webpack"], ["GIT", "Terminal", "Gulp", "Webpack"])
+
+        //- section Portfolio
+        section.portfolio
+          .container.portfolio__container
+            h2.title.portfolio__title Мои Работы
+            .portfolio__wrapper
+              .portfolio__left
+                .portfolio__slider.slider
+                  .slider__window
+                    +image('content/portfolio_pr0.jpg', 'slider__window-pic')
+                  .slider__preview
+                    +sliderPreview(["0", "1", "2", "3"])
+                  .slider__btns
+                    a.slider__btns--direction--prev
+                      +icon('short_arrow', 'slider__btns--icon slider__btns--icon--prev')
+                    a.slider__btns--direction--next
+                      +icon('short_arrow', 'slider__btns--icon slider__btns--icon--next')
+              .portfolio__right
+                .portfolio__project.school
+                  +projectTags("school", ["HTML", "CSS", "Javascript"])
+                  .portfolio__project-desc.school__desc
+                    .h3.subtitle.portfolio__project-subtitle Сайт школы образования
+                    .school__about-project
+                      p Эта девушка проходила обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!
+                  a.project__link(href="#")
+                      +icon('link', 'project__link-icon')
+                      span.project__link-text Посмотреть сайт
+        
+        //- section Comments
+        .sections-wrapper--two
+          section.comments
+            .container.comments__container
+              .comments__bar
+                h2.title.comments__title Что обо мне говорят
+                .comments__nav
+                  a.comments__nav-icon.comments__nav-icon--prev(href="#")
+                  a.comments__nav-icon.comments__nav-icon--next(href="#")
+              +comments([
+                {
+                  name: 'Дмитрий Ковальчук',
+                  occupation: 'Основатель Loftschool',
+                  text: 'Эта девушка проходила обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!',
+                  picTag: 'dima'
+                },
+                {
+                  name: 'Владимир Сабанцев',
+                  occupation: 'Преподаватель',
+                  text: 'Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах',
+                  picTag: 'vova'
+                }
+              ])
+          section.contact
+            .container.contact__container
+              h2.title.contact__title Связаться со мной
+              form.contact__form.form(action="")
+                .form__row
+                  .form__block-wrapper
+                    label.form__block
+                      .form__block-title Введите ваше имя
+                      input.form__input.form__input--name(type="text" name="name" placeholder="Дмитрий Ковальчук" required)
+                  .form__block-wrapper
+                    label.form__block
+                      .form__block-title Введите ваш email
+                      input.form__input.form__input--email(type="text" name="email" placeholder="loftschool@study.com" required)
+                .form__row
+                  .form__block-wrapper
+                    label.form__block.form__block-textarea
+                      .form__block-title Сообщение к письму
+                      textarea.form__input.form__textarea(name="comment" placeholder="Требуется помощь в создании сайта. Интересуют сроки и цена вопроса")
+                .form.row
+                  button.form__submit(type="submit") ОТПРАВИТЬ
+          
+          //- section Footer
+        footer.footer
+            .container.footer__container
+              .footer__left
+                .footer__year © 2019
+                .footer__sign 
+                  .footer__me 
+                    | ИННА
+                    br
+                    | ЦОЙ
+                  .footer__sign-text 
+                    | Личный сайт
+                    br
+                    | веб-разработчика
+              .footer__right
+                +nav('footer__nav', ["Главная", "Обо мне", "Навыки", "Работы", "Отзывы", "Связаться"])
+                .footer__right-content
+                  .footer__about
+                    .footer__website-desc
+                      p Этот сайт я сделала в рамках обучения в Школе онлайн образования Loftschool
+                    +socials
+                  .footer__quote.quote
+                    .footer__quote-text Всегда пишите код так, будто сопровождать его будет склонный к насилию психопат, который знает где вы живете
+                    .footer__quote-author Martin Golding
+
+
+            
+
+
+
+
+
+

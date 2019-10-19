@@ -21,6 +21,10 @@ html(lang="en")
                   +nav('header__nav', ["Главная", "Обо мне", "Навыки", "Работы", "Отзывы", "Связаться"])
                 .header__socials-wrapper
                   +socials
+                .header__burger.burger-menu
+                  div
+                  div
+                  div
               .welcome__main-content
                 .welcome__text
                   .welcome__text--position--above Личный сайт
@@ -112,20 +116,21 @@ html(lang="en")
                 .comments__nav
                   a.comments__nav-icon.comments__nav-icon--prev(href="#")
                   a.comments__nav-icon.comments__nav-icon--next(href="#")
-              +comments([
-                {
-                  name: 'Дмитрий Ковальчук',
-                  occupation: 'Основатель Loftschool',
-                  text: 'Эта девушка проходила обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!',
-                  picTag: 'dima'
-                },
-                {
-                  name: 'Владимир Сабанцев',
-                  occupation: 'Преподаватель',
-                  text: 'Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах',
-                  picTag: 'vova'
-                }
-              ])
+              .comments__wrapper
+                +comments([
+                  {
+                    name: 'Дмитрий Ковальчук',
+                    occupation: 'Основатель Loftschool',
+                    text: 'Эта девушка проходила обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!',
+                    picTag: 'dima'
+                  },
+                  {
+                    name: 'Владимир Сабанцев',
+                    occupation: 'Преподаватель',
+                    text: 'Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах',
+                    picTag: 'vova'
+                  }
+                ])
           section.contact
             .container.contact__container
               h2.title.contact__title Связаться со мной
@@ -144,33 +149,33 @@ html(lang="en")
                     label.form__block.form__block-textarea
                       .form__block-title Сообщение к письму
                       textarea.form__input.form__textarea(name="comment" placeholder="Требуется помощь в создании сайта. Интересуют сроки и цена вопроса")
-                .form.row
+                .form__row
                   button.form__submit(type="submit") ОТПРАВИТЬ
           
           //- section Footer
-        footer.footer
-            .container.footer__container
-              .footer__left
-                .footer__year © 2019
-                .footer__sign 
-                  .footer__me 
-                    | ИННА
-                    br
-                    | ЦОЙ
-                  .footer__sign-text 
-                    | Личный сайт
-                    br
-                    | веб-разработчика
-              .footer__right
-                +nav('footer__nav', ["Главная", "Обо мне", "Навыки", "Работы", "Отзывы", "Связаться"])
-                .footer__right-content
-                  .footer__about
-                    .footer__website-desc
-                      p Этот сайт я сделала в рамках обучения в Школе онлайн образования Loftschool
-                    +socials
-                  .footer__quote.quote
-                    .footer__quote-text Всегда пишите код так, будто сопровождать его будет склонный к насилию психопат, который знает где вы живете
-                    .footer__quote-author Martin Golding
+      footer.footer
+          .container.footer__container
+            .footer__left
+              .footer__year © 2019
+              .footer__sign 
+                .footer__me 
+                  | ИННА
+                  br
+                  | ЦОЙ
+                .footer__sign-text 
+                  | Личный сайт
+                  br
+                  | веб-разработчика
+            .footer__right
+              +nav('footer__nav', ["Главная", "Обо мне", "Навыки", "Работы", "Отзывы", "Связаться"])
+              .footer__right-content
+                .footer__about
+                  .footer__website-desc
+                    p Этот сайт я сделала в рамках обучения в Школе онлайн образования Loftschool
+                  +socials
+                .footer__quote.quote
+                  .footer__quote-text Всегда пишите код так, будто сопровождать его будет склонный к насилию психопат, который знает где вы живете
+                  .footer__quote-author Martin Golding
 
 
             

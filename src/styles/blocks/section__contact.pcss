@@ -1,11 +1,35 @@
-.contact {
-  height: 100vh;
-}
-
 .contact__container {
   flex-direction: column;
+  margin: 0 0 2%;
+
+  @include desktop {
+    margin: 2% 0 10%;
+  }
+
+  @include tablets {
+    margin-top: 0;
+    margin-bottom: 35%;
+  }
+
 }
 
 .contact__title {
-  margin-bottom: 97px;
+  margin-bottom: 81px;
+
+  @include tablets {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
+  @include phones {
+    font-size: 28px;
+  }
+}
+
+.contact__form {
+  width: 75%;
+
+  @include tablets {
+    width: 100%;
+  }
 }

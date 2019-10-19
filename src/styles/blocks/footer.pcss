@@ -8,6 +8,11 @@
   bottom: 0;
   margin-top: -371px;
   align-items: center;
+
+  @include tablets {
+    height: 560px;
+    margin-top: -560px;
+  }
 }
 
 .footer__container {
@@ -15,6 +20,10 @@
   font-weight: normal;
   color: rgba(255, 255, 255, 0.15);
   line-height: 30px;
+
+  @include tablets {
+    margin-top: 6%;
+  }
 }
 
 .footer__left {
@@ -22,6 +31,11 @@
   align-items: flex-start;
   width: 50%;
   margin-right: 10px;
+
+  @include desktop {
+    width: 42%;
+    flex-direction: column;
+  }
 }
 
 .footer__year {
@@ -29,6 +43,16 @@
   font-weight: 600;
   color: rgba(255, 255, 255, 0.1);
   margin-right: 60px;
+
+  @include desktop {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  @include tablets {
+    font-size: 58px;
+    margin-bottom: 40px;
+  }
 }
 
 .footer__sign {
@@ -44,18 +68,54 @@
 }
 
 
+.footer__right {
+
+  @include tablets {
+    width: 84%;
+  }
+}
+
 .footer__right-content {
   display: flex;
+
+  @include tablets {
+    flex-direction: column;
+  }
 }
 
 .footer__nav {
   margin-bottom: 54px;
+
+  @include tablets {
+    flex-flow: wrap;
+    margin-bottom: 44px;
+  }
+
+  .nav__list {
+    flex-wrap: wrap;
+  }
+
+  .nav__item {
+
+    @include tablets {
+      margin-right: 65px;
+    }
+  }
 }
 
 .footer__about {
   display: flex;
   flex-direction: column;
   margin-right: 195px;
+
+  @include desktop {
+    margin-right: 100px;
+  }
+
+  @include tablets {
+    margin-right: 0;
+    margin-bottom: 50px;
+  }
 }
 
 .footer__website-desc {

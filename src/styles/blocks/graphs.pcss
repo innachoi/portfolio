@@ -2,8 +2,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 140px;
-  height: 140px;
+  width: 160px;
+  height: 160px;
+
+  @include desktop {
+    height: 180px;
+    width: 180px;
+  }
+
+  @include tablets {
+    height: 150px;
+    width: 150px;
+  }
 }
 
 .graph__circle--position--under {

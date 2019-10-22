@@ -10,34 +10,43 @@ html(lang="en")
   body
     .wrapper
       .maincontent
-        //- joined sections
-        .sections-wrapper--one
-          section.welcome
-            .container.welcome__container
-              header.header
-                .header__favicon.favicon
-                  +image('icons/favicon.png', 'favicon__pic')
-                .header__nav-wrapper
-                  +nav('header__nav', ["Главная", "Обо мне", "Навыки", "Работы", "Отзывы", "Связаться"])
-                .header__socials-wrapper
-                  +socials
-                .header__burger.burger-menu
-                  div
-                  div
-                  div
-              .welcome__main-content
-                .welcome__text
-                  .welcome__text--position--above Личный сайт
-                  .welcome__text--position--under веб-разработчика
-                .welcome__me
-                  .welcome__me-name Инна
-                  .welcome__me-lname Цой
-              .welcome__btns
-                .scroll
-                  a.scroll__nav
-                    .scroll__nav-text Скролл
-                    +icon('scroll', 'scroll__nav-icon') 
-          section.about
+        section.welcome
+          .container.welcome__container
+            .parallax
+              .parallax__layer
+                +image('background/parallax/parallax_1.png', 'parallax__layer-img')
+              .parallax__layer
+                +image('background/parallax/parallax_2.png', 'parallax__layer-img')
+              .parallax__layer
+                +image('background/parallax/parallax_3.png', 'parallax__layer-img')
+              .parallax__layer
+                +image('background/parallax/parallax_4.png', 'parallax__layer-img')
+              .parallax__layer
+                +image('background/parallax/parallax_5.png', 'parallax__layer-img')
+            header.header
+              .header__favicon.favicon
+                +image('icons/favicon.png', 'favicon__pic')
+              .header__nav-wrapper
+                +nav('header__nav', ["Главная", "Обо мне", "Навыки", "Работы", "Отзывы", "Связаться"])
+              .header__socials-wrapper
+                +socials
+              .header__burger.burger-menu
+                div
+                div
+                div
+            .welcome__main-content
+              .welcome__text
+                .welcome__text--position--above Личный сайт
+                .welcome__text--position--under веб-разработчика
+              .welcome__me
+                .welcome__me-name Инна
+                .welcome__me-lname Цой
+            .welcome__btns
+              .scroll
+                a.scroll__nav
+                  .scroll__nav-text Скролл
+                  +icon('scroll', 'scroll__nav-icon') 
+        section.about
             .container.about__container
               .about__left
                 .user
@@ -89,13 +98,13 @@ html(lang="en")
                 .portfolio__slider.slider
                   .slider__window
                     +image('content/portfolio_pr0.jpg', 'slider__window-pic')
-                  .slider__preview
-                    +sliderPreview(["0", "1", "2", "3"])
-                  .slider__btns
-                    a.slider__btns--direction--prev
-                      +icon('short_arrow', 'slider__btns--icon slider__btns--icon--prev')
-                    a.slider__btns--direction--next
-                      +icon('short_arrow', 'slider__btns--icon slider__btns--icon--next')
+                    .slider__preview
+                      +sliderPreview(["0", "1", "2", "3"])
+                    .slider__btns
+                      a.slider__btns--direction--prev
+                        +icon('short_arrow', 'slider__btns--icon slider__btns--icon--prev')
+                      a.slider__btns--direction--next
+                        +icon('short_arrow', 'slider__btns--icon slider__btns--icon--next')
               .portfolio__right
                 .portfolio__project.school
                   +projectTags("school", ["HTML", "CSS", "Javascript"])

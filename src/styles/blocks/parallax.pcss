@@ -1,0 +1,28 @@
+.parallax {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  perspective: 100px;
+  background-color: #1b1f22;
+}
+
+.parallax__layer {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+$layers: 5;
+
+@for $layerNum from $layers through 1 {
+  .parallax__layer:nth-child(#{$layerNum}) {
+    $currentLayer:  $layers - $layerNum;
+    $perspective:  -$currentLayer * 50px;
+
+    transform: translateZ($perspective);
+  }
+}

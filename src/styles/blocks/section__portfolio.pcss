@@ -1,3 +1,7 @@
+.portfolio {
+  justify-content: center;
+}
+
 .portfolio__container {
   flex-direction: column;
   z-index: 5;
@@ -74,6 +78,7 @@
 
 
 .slider__window {
+  position: relative;
   width: 975px;
   height: 549px;
 
@@ -96,14 +101,14 @@
 .slider__preview {
   display: flex;
   position: absolute;
-  bottom: 60px;
+  bottom: 92px;
   right: 0;
-  width: 668px;
+  width: 688px;
   overflow: hidden;
 
   @include desktop {
     width: 525px;
-    bottom: 92px;
+    bottom: 30px;
   }
 
   @include phones {
@@ -112,7 +117,7 @@
 }
 
 .slider__preview-list {
-  display: block;
+  display: flex;
 }
 
 .slider__preview-item {
@@ -154,6 +159,10 @@
   flex-direction: column-reverse;
   left: 100%;
   bottom: 92px;
+
+  @include desktop {
+    bottom: 30px;
+  }
 
   @include phones {
     left: 83%;

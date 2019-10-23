@@ -72,6 +72,10 @@
     z-index: -1;
     left: 93%;
     bottom: 34px;
+
+    @include phones {
+      display: none;
+    }
   }
 }
 
@@ -326,4 +330,8 @@
   color: #586ed3;
   font-size: 18px;
   font-weight: 700;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }

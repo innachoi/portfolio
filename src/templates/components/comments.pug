@@ -1,0 +1,25 @@
+script(type="text/x-template")#comments-swiper
+    section.comments#comments
+      .container.comments__container
+        .comments__bar
+          h2.title.comments__title Что обо мне говорят
+          .comments__nav
+            button.comments__nav-icon.comments__nav-icon--prev
+            button.comments__nav-icon.comments__nav-icon--next
+        .comments__wrapper
+          .comments__list
+              swiper(ref="mySwiper" :options="swiperOption")
+                comment-item(v-for="item in comments" :item="item")
+                
+
+script(type="text/x-template")#comment-item
+    swiper-slide
+        li.comments__item
+          .comments__text
+            p {{ item.text }}
+          .comments__profile
+            .comments__avatar
+              img.comments__avatar-pic(:src="item.photo")
+            .comments__profile-info
+              .comments__profile-name {{ item.name }}
+              .comments__profile-occup {{ item.occupation }}

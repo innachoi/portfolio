@@ -24,6 +24,11 @@
   @include tablets {
     margin-top: 6%;
   }
+
+  @include phones {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 .footer__left {
@@ -50,8 +55,12 @@
   }
 
   @include tablets {
-    font-size: 58px;
+    font-size: 48px;
     margin-bottom: 40px;
+  }
+
+  @include phones {
+    font-size: 38px;
   }
 }
 

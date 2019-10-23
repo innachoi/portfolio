@@ -45,16 +45,16 @@ mixin projectTags(projectName, tags)
       li.tags__item
         .tags__item-name= tag
 
-mixin comments(authors)
-  ul.comments__list
-    each author in authors
-      li.comments__item
-        .comments__text
-          p= author.text
-        .comments__profile
-          .comments__avatar
-            +image(`content/comment_` + `${author.picTag}` + `.jpg`, 'comments__avatar-pic')
-          .comments__profile-info
-            .comments__profile-name=  author.name
-            .comments__profile-occup= author.occupation
+//- mixin comments(authors)
+//-   ul.comments__list
+//-     each author in authors
+//-       li.comments__item
+//-         .comments__text
+//-           p= author.text
+//-         .comments__profile
+//-           .comments__avatar
+//-             +image(`content/comment_` + `${author.picTag}` + `.jpg`, 'comments__avatar-pic')
+//-           .comments__profile-info
+//-             .comments__profile-name=  author.name
+//-             .comments__profile-occup= author.occupation
           

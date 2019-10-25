@@ -1,0 +1,16 @@
+.burger-menu {
+  display: none;
+
+  @include tablets {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+  }
+}
+
+.burger-menu div {
+  width: 30px;
+  height: 5px;
+  background: white;
+}

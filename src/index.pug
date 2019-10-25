@@ -10,30 +10,43 @@ html(lang="en")
   body
     .wrapper
       .maincontent
-        //- joined sections
-        .sections-wrapper--one
-          section.welcome
-            .container.welcome__container
-              header.header
-                .header__favicon.favicon
-                  +image('icons/favicon.png', 'favicon__pic')
-                .header__nav-wrapper
-                  +nav('header__nav', ["Главная", "Обо мне", "Навыки", "Работы", "Отзывы", "Связаться"])
-                .header__socials-wrapper
-                  +socials
-              .welcome__main-content
-                .welcome__text
-                  .welcome__text--position--above Личный сайт
-                  .welcome__text--position--under веб-разработчика
-                .welcome__me
-                  .welcome__me-name Инна
-                  .welcome__me-lname Цой
-              .welcome__btns
-                .scroll
-                  a.scroll__nav
-                    .scroll__nav-text Скролл
-                    +icon('scroll', 'scroll__nav-icon') 
-          section.about
+        section.welcome
+          .container.welcome__container
+            .parallax
+              .parallax__layer(data-speed="0.45")
+                +image('background/parallax/parallax_1.png', 'parallax__layer-img')
+              .parallax__layer(data-speed="0.5")
+                +image('background/parallax/parallax_2.png', 'parallax__layer-img')
+              .parallax__layer(data-speed="0.3")
+                +image('background/parallax/parallax_3.png', 'parallax__layer-img')
+              .parallax__layer(data-speed="0.3")
+                +image('background/parallax/parallax_4.png', 'parallax__layer-img')
+              .parallax__layer(data-speed="0.25")
+                +image('background/parallax/parallax_5.png', 'parallax__layer-img')
+            header.header
+              .header__favicon.favicon
+                +image('icons/favicon.png', 'favicon__pic')
+              .header__nav-wrapper
+                +nav('header__nav', ["Главная", "Обо мне", "Навыки", "Работы", "Отзывы", "Связаться"])
+              .header__socials-wrapper
+                +socials
+              .header__burger.burger-menu
+                div
+                div
+                div
+            .welcome__main-content
+              .welcome__text
+                .welcome__text--position--above Личный сайт
+                .welcome__text--position--under веб-разработчика
+              .welcome__me
+                .welcome__me-name Инна
+                .welcome__me-lname Цой
+            .welcome__btns
+              .scroll
+                a.scroll__nav
+                  .scroll__nav-text Скролл
+                  +icon('scroll', 'scroll__nav-icon') 
+        section.about
             .container.about__container
               .about__left
                 .user
@@ -68,13 +81,14 @@ html(lang="en")
               h3.subtitle Чем я могу быть полезна вам
               .skills__desc
                 p Этот сайт я сделалa в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
-            .skills__graphs
-              .skills__area.skills__area--front-end
-                h4.skills__subtitle.subtitle-two Front-end
-                +skillsGraphs("front-end", ["html", "css", "js", "jquery"], ["HTML5", "CSS3", "Javascript", "Jquery и Vue.js"])
-              .skills__area.skills__area--workflow
-                h4.skills__subtitle.subtitle-two Workflow
-                +skillsGraphs("workflow", ["git", "terminal", "gulp", "webpack"], ["GIT", "Terminal", "Gulp", "Webpack"])
+            #skills-component
+            //- .skills__graphs
+            //-   .skills__area.skills__area--front-end
+            //-     h4.skills__subtitle.subtitle-two Front-end
+            //-     +skillsGraphs("front-end", ["html", "css", "js", "jquery"], ["HTML5", "CSS3", "Javascript", "Jquery и Vue.js"])
+            //-   .skills__area.skills__area--workflow
+            //-     h4.skills__subtitle.subtitle-two Workflow
+            //-     +skillsGraphs("workflow", ["git", "terminal", "gulp", "webpack"], ["GIT", "Terminal", "Gulp", "Webpack"])
 
         //- section Portfolio
         section.portfolio
@@ -85,13 +99,13 @@ html(lang="en")
                 .portfolio__slider.slider
                   .slider__window
                     +image('content/portfolio_pr0.jpg', 'slider__window-pic')
-                  .slider__preview
-                    +sliderPreview(["0", "1", "2", "3"])
-                  .slider__btns
-                    a.slider__btns--direction--prev
-                      +icon('short_arrow', 'slider__btns--icon slider__btns--icon--prev')
-                    a.slider__btns--direction--next
-                      +icon('short_arrow', 'slider__btns--icon slider__btns--icon--next')
+                    .slider__preview
+                      +sliderPreview(["0", "1", "2", "3"])
+                    .slider__btns
+                      button.slider__btns--direction--prev
+                        +icon('short_arrow', 'slider__btns--icon slider__btns--icon--prev')
+                      button.slider__btns--direction--next
+                        +icon('short_arrow', 'slider__btns--icon slider__btns--icon--next')
               .portfolio__right
                 .portfolio__project.school
                   +projectTags("school", ["HTML", "CSS", "Javascript"])
@@ -105,27 +119,7 @@ html(lang="en")
         
         //- section Comments
         .sections-wrapper--two
-          section.comments
-            .container.comments__container
-              .comments__bar
-                h2.title.comments__title Что обо мне говорят
-                .comments__nav
-                  a.comments__nav-icon.comments__nav-icon--prev(href="#")
-                  a.comments__nav-icon.comments__nav-icon--next(href="#")
-              +comments([
-                {
-                  name: 'Дмитрий Ковальчук',
-                  occupation: 'Основатель Loftschool',
-                  text: 'Эта девушка проходила обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!',
-                  picTag: 'dima'
-                },
-                {
-                  name: 'Владимир Сабанцев',
-                  occupation: 'Преподаватель',
-                  text: 'Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах',
-                  picTag: 'vova'
-                }
-              ])
+          #comments-component
           section.contact
             .container.contact__container
               h2.title.contact__title Связаться со мной
@@ -144,33 +138,29 @@ html(lang="en")
                     label.form__block.form__block-textarea
                       .form__block-title Сообщение к письму
                       textarea.form__input.form__textarea(name="comment" placeholder="Требуется помощь в создании сайта. Интересуют сроки и цена вопроса")
-                .form.row
+                .form__row
                   button.form__submit(type="submit") ОТПРАВИТЬ
           
           //- section Footer
-        footer.footer
-            .container.footer__container
-              .footer__left
-                .footer__year © 2019
-                .footer__sign 
-                  .footer__me 
-                    | ИННА
-                    br
-                    | ЦОЙ
-                  .footer__sign-text 
-                    | Личный сайт
-                    br
-                    | веб-разработчика
-              .footer__right
-                +nav('footer__nav', ["Главная", "Обо мне", "Навыки", "Работы", "Отзывы", "Связаться"])
-                .footer__right-content
-                  .footer__about
-                    .footer__website-desc
-                      p Этот сайт я сделала в рамках обучения в Школе онлайн образования Loftschool
-                    +socials
-                  .footer__quote.quote
-                    .footer__quote-text Всегда пишите код так, будто сопровождать его будет склонный к насилию психопат, который знает где вы живете
-                    .footer__quote-author Martin Golding
+      footer.footer
+          .container.footer__container
+            .footer__left
+              .footer__year © 2019
+              .footer__sign 
+                .footer__me ИННА ЦОЙ
+                .footer__sign-text Личный сайт веб-разработчика
+            .footer__right
+              +nav('footer__nav', ["Главная", "Обо мне", "Навыки", "Работы", "Отзывы", "Связаться"])
+              .footer__right-content
+                .footer__about
+                  .footer__website-desc
+                    p Этот сайт я сделала в рамках обучения в Школе онлайн образования Loftschool
+                  +socials
+                .footer__quote.quote
+                  .footer__quote-text Всегда пишите код так, будто сопровождать его будет склонный к насилию психопат, который знает где вы живете
+                  .footer__quote-author Martin Golding
+
+    include ./templates/entry.pug
 
 
             

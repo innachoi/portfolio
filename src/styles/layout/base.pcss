@@ -31,7 +31,6 @@ body {
 .maincontent {
   position: relative;
   height: 100%;
-  padding-bottom: 371px;
 }
 
 .container {
@@ -47,9 +46,13 @@ body {
 }
 
 section {
-  height: 100vh;
+  // height: 100vh;
   min-height: 650px;
   display: flex;
+
+  @include phones {
+    justify-content: center;
+  }
 }
 
 button {
@@ -106,19 +109,19 @@ img {
 
 .container {
   display: flex;
-  width: 1500px;
-  padding: 0 2%;
+  // width: 1500px;
+  // padding: 0 2%;
 }
 
-.sections-wrapper--one {
-  background: url('../images/background/main_bg.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-}
+// .sections-wrapper--one {
+//   background: url('../images/background/main_bg.jpg');
+//   background-repeat: no-repeat;
+//   background-size: cover;
+// }
 
 .sections-wrapper--two {
   background: url('../images/background/comments_bg.jpg');
   background-repeat: no-repeat;
-  height: 200vh;
+  // height: 200vh;
   background-size: cover;
 }

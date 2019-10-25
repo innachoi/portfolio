@@ -21,17 +21,17 @@ mixin socials
         a(class=`socials__link socials__link--${social}` href='#')
           +icon(`${social}`, `socials__icon socials__icon--${social}`)
 
-mixin skillsGraphs(area, skills, skillList)
-  ul(class=`skills__list ${area}__list`)
-    -for (i=0; i < skills.length; i++)
-      li(class=`skills__item ${area}__item`)
-        svg(class=`${area}__item-graph graph` viewBox="0 0 100 100" preserveAspectRatio="none")
-          linearGradient(id="circle")
-            stop(offset="0%" stop-color="#d0731b")
-            stop(offset="100%" stop-color="#dc9322")
-          circle(cx="50" cy="50" r="40" class="graph__circle--position--under")
-          circle(cx="50" cy="50" r="40" stroke="url(#circle)" class=`graph__circle--position--above graph__circle--position--above--${skills[i]}`)
-        div(class=`graph__name graph__name--${skills[i]}`)= skillList[i]
+//- mixin skillsGraphs(area, skills, skillList)
+//-   ul(class=`skills__list ${area}__list`)
+//-     -for (i=0; i < skills.length; i++)
+//-       li(class=`skills__item ${area}__item`)
+//-         svg(class=`${area}__item-graph graph` viewBox="0 0 100 100" preserveAspectRatio="none")
+//-           linearGradient(id="circle")
+//-             stop(offset="0%" stop-color="#d0731b")
+//-             stop(offset="100%" stop-color="#dc9322")
+//-           circle(cx="50" cy="50" r="40" class="graph__circle--position--under")
+//-           circle(cx="50" cy="50" r="40" stroke="url(#circle)" class=`graph__circle--position--above graph__circle--position--above--${skills[i]}`)
+//-         div(class=`graph__name graph__name--${skills[i]}`)= skillList[i]
 
 mixin sliderPreview(slides)
   ul.slider__preview-list
@@ -45,16 +45,16 @@ mixin projectTags(projectName, tags)
       li.tags__item
         .tags__item-name= tag
 
-mixin comments(authors)
-  ul.comments__list
-    each author in authors
-      li.comments__item
-        .comments__text
-          p= author.text
-        .comments__profile
-          .comments__avatar
-            +image(`content/comment_` + `${author.picTag}` + `.jpg`, 'comments__avatar-pic')
-          .comments__profile-info
-            .comments__profile-name=  author.name
-            .comments__profile-occup= author.occupation
+//- mixin comments(authors)
+//-   ul.comments__list
+//-     each author in authors
+//-       li.comments__item
+//-         .comments__text
+//-           p= author.text
+//-         .comments__profile
+//-           .comments__avatar
+//-             +image(`content/comment_` + `${author.picTag}` + `.jpg`, 'comments__avatar-pic')
+//-           .comments__profile-info
+//-             .comments__profile-name=  author.name
+//-             .comments__profile-occup= author.occupation
           

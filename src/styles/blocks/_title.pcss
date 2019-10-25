@@ -1,0 +1,31 @@
+.title {
+  font-size: 36px;
+  color: white;
+  font-weight: 700;
+}
+
+.subtitle {
+  color: white;
+  font-weight: 700;
+  font-size: 30px;
+
+  @include tablets {
+    font-size: 35px;
+    text-align: center;
+  }
+
+  @include phones {
+    font-size: 30px;
+    text-align: left;
+  }
+}
+
+.subtitle-two {
+  font-size: 24px;
+  color: white;
+  font-weight: 700;
+
+  @include tablets {
+    font-size: 22px;
+  }
+}

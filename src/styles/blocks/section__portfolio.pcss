@@ -1,26 +1,67 @@
 .portfolio {
-  height: 120vh;
+  justify-content: center;
 }
 
 .portfolio__container {
   flex-direction: column;
   z-index: 5;
   justify-content: center;
+  margin: 15% 0 18%;
+
+  @include desktop {
+    margin-bottom: 12%;
+  }
+
+  @include tablets {
+    margin-bottom: 7%;
+  }
+
+  @include phones {
+    width: 100%;
+    align-items: center;
+    margin-bottom: 25%;
+  }
 }
 
 .title.portfolio__title {
   color: #333c49;
-  margin-bottom: 70px;
+  margin-bottom: 86px;
+
+  @include desktop {
+    margin-bottom: 70px;
+  }
 }
 
 .portfolio__wrapper {
   display: flex;
+
+  @include tablets {
+    flex-direction: column;
+  }
+
+  @include  phones {
+    width: 100%;
+    align-items: center;
+  }
 }
 
 .portfolio__left {
   display: flex;
   position: relative;
   margin-right: 157px;
+
+  @include desktop {
+    margin-right: 128px;
+  }
+
+  @include tablets {
+    margin-right: 157px;
+    margin-bottom: 60px;
+  }
+
+  @include phones {
+    margin-right: 0;
+  }
 
   &::after {
     position: absolute;
@@ -31,24 +72,52 @@
     z-index: -1;
     left: 93%;
     bottom: 34px;
+
+    @include phones {
+      display: none;
+    }
   }
 }
 
 
 
 .slider__window {
+  position: relative;
   width: 975px;
   height: 549px;
+
+  @include desktop {
+    width: 675px;
+    height: 379px;
+  }
+
+  @include phones {
+    width: 100%;
+    height: 215px;
+  }
 }
 
 .slider__window-pic {
   width: 100%;
+  object-fit: cover;
 }
 
 .slider__preview {
+  display: flex;
   position: absolute;
-  bottom: 60px;
+  bottom: 92px;
   right: 0;
+  width: 688px;
+  overflow: hidden;
+
+  @include desktop {
+    width: 525px;
+    bottom: 30px;
+  }
+
+  @include phones {
+    display: none;
+  }
 }
 
 .slider__preview-list {
@@ -93,7 +162,16 @@
   display: flex;
   flex-direction: column-reverse;
   left: 100%;
-  bottom: 60px;
+  bottom: 92px;
+
+  @include desktop {
+    bottom: 30px;
+  }
+
+  @include phones {
+    left: 83%;
+    bottom: 0;
+  }
 }
 
 .slider__btns--direction--prev, .slider__btns--direction--next {
@@ -103,6 +181,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @include phones {
+    width: 65px;
+    height: 65px;
+  }
 
   &:hover {
     background-color: #ff9d00;
@@ -118,6 +201,11 @@
   width: 6px;
   height: 10px;
   fill: white;
+
+  @include phones {
+    width: 9px;
+    height: 13px;
+  }
 }
 
 .slider__btns--icon--prev {
@@ -127,7 +215,16 @@
 .portfolio__right {
   display: flex;
   flex-direction: column;
+ 
+  @include tablets {
+    align-items: center;
+    padding: 0 3%;
+  }
 
+  @include phones {
+    width: 85%;
+    align-items: flex-start;
+  }
 }
 
 .portfolio__project {
@@ -139,6 +236,15 @@
   display: flex;
   margin-bottom: 50px;
   flex-flow: wrap;
+
+  @include tablets {
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  @include phones {
+    justify-content: flex-start;
+  }
 }
 
 .tags__item {
@@ -149,6 +255,19 @@
   background-color: #f3f5f9;
   border-radius: 30px;
   margin-right: 10px;
+  margin-bottom: 10px;
+
+  @include desktop {
+    padding: 3% 5%;
+  }
+
+  @include tablets {
+    padding: 2% 3%;
+  }
+
+  @include phones {
+    padding: 4% 6%;
+  }
 
   &:last-child {
     margin-right: 0;
@@ -169,6 +288,10 @@
 .subtitle.portfolio__project-subtitle {
   color: #333c49;
   margin-bottom: 44px;
+
+  @include tablets {
+    margin-bottom: 30px;
+  }
 }
 
 .school__about-project {
@@ -176,6 +299,25 @@
   font-weight: 600;
   line-height: 1.88;
   margin-bottom: 50px;
+
+  @include tablets {
+    text-align: center;
+    padding: 0 8%;
+  }
+
+  @include phones {
+    padding: 0;
+    text-align: initial;
+  }
+}
+
+.project__link {
+  display: flex;
+  justify-content: center;
+
+  @include phones {
+    justify-content: flex-start;
+  }
 }
 
 .project__link-icon {
@@ -189,4 +331,8 @@
   color: #586ed3;
   font-size: 18px;
   font-weight: 700;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }

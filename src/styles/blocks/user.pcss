@@ -1,15 +1,23 @@
 .user__avatar {
-  margin-bottom: 80px;
+  margin-bottom: 68px;
 }
 
-.profile__row {
-  margin-bottom: 25px;
+.user__profile {
+  margin-right: 15%;
+
+  @include phones {
+    margin-right: 0;
+  }
 }
 
 .profile__key {
   display: block;
   color: rgba(255, 255, 255, 0.15);
   margin-right: 82px;
+
+  @include tablets {
+    margin-right: 40px;
+  }
 }
 
 .profile__value {

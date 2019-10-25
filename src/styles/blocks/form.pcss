@@ -1,13 +1,23 @@
-.form {
-  width: 60%;
-}
-
 .form__row {
   display: flex;
-  margin-bottom: 40px;
+  margin-bottom: 46px;
+
+  @include phones {
+    flex-direction: column;
+    margin-bottom: 40px;
+  }
 
   &:last-child {
     margin-bottom: 0;
+    
+    @include tablets {
+      display: flex;
+      justify-content: center;
+    }
+
+    @include phones {
+      align-items: center;
+    }
   }
 }
 
@@ -16,6 +26,18 @@
   border-bottom: 2px $text-color solid;
   margin-right: 40px;
   flex: 1;
+
+  @include phones {
+    margin-bottom: 40px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &:last-child {
+    margin-right: 0;
+  }
 }
 
 .form__block-title {
@@ -29,7 +51,10 @@
   background: left top no-repeat;
   color: white;
   font-weight: 600;
-  cursor: pointer;
+
+  @include tablets {
+    background: left 15px bottom 2px no-repeat;
+  }
 
   &::placeholder {
     color: white;
@@ -47,6 +72,10 @@
 
 .form__block-title, .form__input {
   padding-left: 46px;
+
+  @include tablets {
+    padding-left: 66px;
+  }
 }
 
 .form__block-textarea {
@@ -58,6 +87,10 @@
   overflow: hidden;
   width: 50%;
   background-image: svg-load('message.svg', fill=rgba(255, 255, 255, 0.3), width=30px, height=30px);
+
+  @include tablets {
+    width: 85%;
+  }
 }
 
 .form__input--name {
@@ -76,7 +109,22 @@
   height: 80px;
   border: none;
   background-image: linear-gradient(to right, #d0731b, #dc9322);
-  margin-bottom: 20px;
+  margin-top: 20px;
+
+  @include desktop {
+    margin-top: 35px;
+  }
+
+  @include tablets {
+    margin-top: 0;
+    width: 390px;
+    height: 95px;
+  }
+
+  @include phones {
+    width: 280px;
+    height: 80px;
+  }
 
   &:hover {
     background-image: linear-gradient(to right, #ff7f00, #ff9d00);
@@ -84,22 +132,37 @@
   }
 }
 
-.form__block-wrapper:hover {
-  cursor: pointer;
-  border-color: #ff9a00;
-  transition: .3s;
+.form__input--name {
+  &:focus {
+    background-image: svg-load('user.svg', fill=#ff9a00, width=30px, height=30px);
+  }
+  &:hover {
+    background-image: svg-load('user.svg', fill=#ff9a00, width=30px, height=30px);
+    transition: .3s;
+  }
 }
 
-.form__block-wrapper:hover .form__input--name {
-  background-image: svg-load('user.svg', fill=#ff9a00, width=30px, height=30px);
-  transition: .3s;
+.form__input--email {
+  &:focus {
+    background-image: svg-load('envelope.svg', fill=#ff9a00, width=30px, height=30px);
+  }
+  &:hover {
+    background-image: svg-load('envelope.svg', fill=#ff9a00, width=30px, height=30px);
+    transition: .3s;
+  }
 }
-.form__block-wrapper:hover .form__input--email {
-  background-image: svg-load('envelope.svg', fill=#ff9a00, width=30px, height=30px);
-  transition: .3s;
+
+.form__textarea {
+  &:hover {
+    background-image: svg-load('message.svg', fill=#ff9a00, width=30px, height=30px);
+    transition: .3s;
+  }
+  &:focus {
+    background-image: svg-load('message.svg', fill=#ff9a00, width=30px, height=30px);
+  }
 }
-.form__block-wrapper:hover .form__textarea {
-  background-image: svg-load('message.svg', fill=#ff9a00, width=30px, height=30px);
-  transition: .3s;
+
+.form__block-wrapper:focus {
+  border-bottom: #ff9a00;
 }
 

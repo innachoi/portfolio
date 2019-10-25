@@ -3,6 +3,16 @@
   display: flex;
   padding-top: 3%;
   justify-content: space-between;
+
+  @include phones {
+    padding-top: 14%;
+  }
+}
+
+.header__socials-wrapper {
+  @include phones {
+    display: none;
+  }
 }
 
 

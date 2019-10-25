@@ -1,26 +1,23 @@
-// var parallax = (function () {
-//   var background = document.querySelectorAll('.parallax__layer');
 
+const parallax = document.querySelector('.parallax')
 
-//   return {
-//     move: function (layer, windowScroll, strafeAmount) {
-//       var strafe = windowScroll / -strafeAmount + '%';
-//       var transformString = 'translate3d(0,' + strafe  +', 0)';
+function moveLayersDependOnScroll(wScroll, layers, coef) {
+  Array.from(layers).forEach(layer => {
+    const divider = layer.dataset.speed;
+    const offset = wScroll * divider / coef;
 
-//       var style = block.style;
+    layer.style.transform = `translateY(-${offset}%)`;
+  })
+}
 
-//       style.transform = transformString
-//       style.webkitTransform = transformString
-//     },
+let parallaxOptions = {
+  element: parallax,
+  coef: 10
+}
 
-//     init: function (wScroll) {
-//       this.move(background, wScroll, 45);
-//     }
-//   }
-// }() );
+const layers = parallaxOptions.element.children
 
-// window.onscroll = function () {
-//   var wScroll = window.pageYOffset;
-
-//   parallax.init(wScroll);
-// }
+window.addEventListener('scroll', e => {
+  const wScroll = window.pageYOffset;
+  moveLayersDependOnScroll(wScroll, layers, parallaxOptions.coef)
+})

@@ -84,11 +84,18 @@
   }
 }
 
-.skills__area--front-end {
+.skills__area {
+  display: flex;
+  flex-direction: column;
   margin-bottom: 40px;
 
   @include tablets {
+    align-items: center;
     margin-bottom: 55px;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
   }
 }
 
@@ -97,6 +104,10 @@
 
   @include tablets {
     margin-bottom: 15px;
+  }
+
+  @include phones {
+    text-align: center;
   }
 }
 
@@ -111,18 +122,13 @@
   }
 }
 
-.skills__area {
-  display: flex;
-  flex-direction: column;
-
-  @include tablets {
-    align-items: center;
-  }
-}
-
 .skills__list {
   display: flex;
   flex-wrap: wrap;
+
+  @include phones {
+    justify-content: center;
+  }
 }
 
 .skills__item {

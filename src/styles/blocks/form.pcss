@@ -14,6 +14,10 @@
       display: flex;
       justify-content: center;
     }
+
+    @include phones {
+      align-items: center;
+    }
   }
 }
 
@@ -117,36 +121,48 @@
     height: 95px;
   }
 
+  @include phones {
+    width: 280px;
+    height: 80px;
+  }
+
   &:hover {
     background-image: linear-gradient(to right, #ff7f00, #ff9d00);
     transition: .3s;
   }
 }
 
-// .form__block-wrapper:hover {
-//   border-color: #ff9a00;
-//   transition: .3s;
-// }
+.form__input--name {
+  &:focus {
+    background-image: svg-load('user.svg', fill=#ff9a00, width=30px, height=30px);
+  }
+  &:hover {
+    background-image: svg-load('user.svg', fill=#ff9a00, width=30px, height=30px);
+    transition: .3s;
+  }
+}
 
-// .form__block-wrapper:hover .form__input--name {
-//   background-image: svg-load('user.svg', fill=#ff9a00, width=30px, height=30px);
-//   transition: .3s;
-// }
-// .form__block-wrapper:hover .form__input--email {
-//   background-image: svg-load('envelope.svg', fill=#ff9a00, width=30px, height=30px);
-//   transition: .3s;
-// }
-// .form__block-wrapper:hover .form__textarea {
-//   background-image: svg-load('message.svg', fill=#ff9a00, width=30px, height=30px);
-//   transition: .3s;
-// }
-.form__input:focus + .form__input--name {
-  background-image: svg-load('user.svg', fill=#ff9a00, width=30px, height=30px);
+.form__input--email {
+  &:focus {
+    background-image: svg-load('envelope.svg', fill=#ff9a00, width=30px, height=30px);
+  }
+  &:hover {
+    background-image: svg-load('envelope.svg', fill=#ff9a00, width=30px, height=30px);
+    transition: .3s;
+  }
 }
-.form__input:focus .form__input--email {
-  background-image: svg-load('envelope.svg', fill=#ff9a00, width=30px, height=30px);
+
+.form__textarea {
+  &:hover {
+    background-image: svg-load('message.svg', fill=#ff9a00, width=30px, height=30px);
+    transition: .3s;
+  }
+  &:focus {
+    background-image: svg-load('message.svg', fill=#ff9a00, width=30px, height=30px);
+  }
 }
-.form__input:focus .form__textarea {
-  background-image: svg-load('message.svg', fill=#ff9a00, width=30px, height=30px);
+
+.form__block-wrapper:focus {
+  border-bottom: #ff9a00;
 }
 

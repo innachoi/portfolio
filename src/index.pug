@@ -13,15 +13,15 @@ html(lang="en")
         section.welcome
           .container.welcome__container
             .parallax
-              .parallax__layer
+              .parallax__layer(data-speed="0.45")
                 +image('background/parallax/parallax_1.png', 'parallax__layer-img')
-              .parallax__layer
+              .parallax__layer(data-speed="0.5")
                 +image('background/parallax/parallax_2.png', 'parallax__layer-img')
-              .parallax__layer
+              .parallax__layer(data-speed="0.3")
                 +image('background/parallax/parallax_3.png', 'parallax__layer-img')
-              .parallax__layer
+              .parallax__layer(data-speed="0.3")
                 +image('background/parallax/parallax_4.png', 'parallax__layer-img')
-              .parallax__layer
+              .parallax__layer(data-speed="0.25")
                 +image('background/parallax/parallax_5.png', 'parallax__layer-img')
             header.header
               .header__favicon.favicon
@@ -81,13 +81,14 @@ html(lang="en")
               h3.subtitle Чем я могу быть полезна вам
               .skills__desc
                 p Этот сайт я сделалa в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
-            .skills__graphs
-              .skills__area.skills__area--front-end
-                h4.skills__subtitle.subtitle-two Front-end
-                +skillsGraphs("front-end", ["html", "css", "js", "jquery"], ["HTML5", "CSS3", "Javascript", "Jquery и Vue.js"])
-              .skills__area.skills__area--workflow
-                h4.skills__subtitle.subtitle-two Workflow
-                +skillsGraphs("workflow", ["git", "terminal", "gulp", "webpack"], ["GIT", "Terminal", "Gulp", "Webpack"])
+            #skills-component
+            //- .skills__graphs
+            //-   .skills__area.skills__area--front-end
+            //-     h4.skills__subtitle.subtitle-two Front-end
+            //-     +skillsGraphs("front-end", ["html", "css", "js", "jquery"], ["HTML5", "CSS3", "Javascript", "Jquery и Vue.js"])
+            //-   .skills__area.skills__area--workflow
+            //-     h4.skills__subtitle.subtitle-two Workflow
+            //-     +skillsGraphs("workflow", ["git", "terminal", "gulp", "webpack"], ["GIT", "Terminal", "Gulp", "Webpack"])
 
         //- section Portfolio
         section.portfolio
@@ -146,14 +147,8 @@ html(lang="en")
             .footer__left
               .footer__year © 2019
               .footer__sign 
-                .footer__me 
-                  | ИННА
-                  br
-                  | ЦОЙ
-                .footer__sign-text 
-                  | Личный сайт
-                  br
-                  | веб-разработчика
+                .footer__me ИННА ЦОЙ
+                .footer__sign-text Личный сайт веб-разработчика
             .footer__right
               +nav('footer__nav', ["Главная", "Обо мне", "Навыки", "Работы", "Отзывы", "Связаться"])
               .footer__right-content

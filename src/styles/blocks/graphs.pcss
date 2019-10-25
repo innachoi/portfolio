@@ -24,71 +24,78 @@
 
 .graph__circle--position--above {
   stroke-width: 6px;
+  stroke-dasharray: 251;
+  stroke-dashoffset: 44;
+  transform-origin: center;
   fill: transparent;
+  transform: rotate(180deg)
 }
 
-.graph__circle--position--above--html {
-  stroke-dasharray: 251;
-  stroke-dashoffset: 44;
-  transform-origin: center;
-  transform: rotate(180deg);
-}
+// .graph__circle--position--above--html {
+//   stroke-dasharray: 251;
+//   stroke-dashoffset: 44;
+//   transform-origin: center;
+//   transform: rotate(180deg);
+// }
 
-.graph__circle--position--above--css {
-  stroke-dasharray: 251;
-  stroke-dashoffset: 44;
-  transform-origin: center;
-  transform: rotate(180deg);
-}
+// .graph__circle--position--above--css {
+//   stroke-dasharray: 251;
+//   stroke-dashoffset: 44;
+//   transform-origin: center;
+//   transform: rotate(180deg);
+// }
 
-.graph__circle--position--above--js {
-  stroke-dasharray: 251;
-  stroke-dashoffset: 130;
-  transform-origin: center;
-  transform: rotate(180deg);
-}
+// .graph__circle--position--above--js {
+//   stroke-dasharray: 251;
+//   stroke-dashoffset: 130;
+//   transform-origin: center;
+//   transform: rotate(180deg);
+// }
 
-.graph__circle--position--above--jquery {
-  stroke-dasharray: 251;
-  stroke-dashoffset: 186;
-  transform-origin: center;
-  transform: rotate(180deg);
-}
+// .graph__circle--position--above--jquery {
+//   stroke-dasharray: 251;
+//   stroke-dashoffset: 186;
+//   transform-origin: center;
+//   transform: rotate(180deg);
+// }
 
-.graph__circle--position--above--git {
-  stroke-dasharray: 251;
-  stroke-dashoffset: 100;
-  transform-origin: center;
-  transform: rotate(180deg);
-}
+// .graph__circle--position--above--git {
+//   stroke-dasharray: 251;
+//   stroke-dashoffset: 100;
+//   transform-origin: center;
+//   transform: rotate(180deg);
+// }
 
-.graph__circle--position--above--terminal {
-  stroke-dasharray: 251;
-  stroke-dashoffset: 110;
-  transform-origin: center;
-  transform: rotate(180deg);
-}
+// .graph__circle--position--above--terminal {
+//   stroke-dasharray: 251;
+//   stroke-dashoffset: 110;
+//   transform-origin: center;
+//   transform: rotate(180deg);
+// }
 
-.graph__circle--position--above--gulp {
-  stroke-dasharray: 251;
-  stroke-dashoffset: 200;
-  transform-origin: center;
-  transform: rotate(180deg);
-}
+// .graph__circle--position--above--gulp {
+//   stroke-dasharray: 251;
+//   stroke-dashoffset: 200;
+//   transform-origin: center;
+//   transform: rotate(180deg);
+// }
 
-.graph__circle--position--above--webpack {
-  stroke-dasharray: 251;
-  stroke-dashoffset: 221;
-  transform-origin: center;
-  transform: rotate(180deg);
-}
+// .graph__circle--position--above--webpack {
+//   stroke-dasharray: 251;
+//   stroke-dashoffset: 221;
+//   transform-origin: center;
+//   transform: rotate(180deg);
+// }
 
 .graph__name {
   fill: $text-color;
   font-weight: 700;
   font-size: 18px;
   position: absolute;
-  top: 40%;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
   @include tablets {
     font-size: 16px;
@@ -96,9 +103,4 @@
   }
 }
 
-.graph__name--jquery {
-  padding: 0 24%;
-  text-align: center;
-  top: 31%;
-}
 

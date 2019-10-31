@@ -97,7 +97,7 @@
                     .new__add-text Добавить работу
                 li.portfolio__item.item
                   .item__cover
-                    img.item__cover-img(src="../images/content/portfolio_pr0.jpg")
+                    img.item__cover-img(src="../images/content/portfolio_pr1.jpg")
                   .item__tags
                     ul.tags__list
                       li.tags__item Javascript
@@ -260,6 +260,10 @@
     font-size: 16px;
     font-weight: 700;
     color: white;
+
+    &:hover {
+      background-image: linear-gradient(to right, #d0731b, #dc9322);
+    }
   }
 
   /* Header */
@@ -289,6 +293,11 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    @include phones {
+      flex-direction: column;
+      align-items: flex-start;
+    }
   }
 
   .header__profile-name {
@@ -301,6 +310,10 @@
     font-size: 14px;
     color: rgba(255, 255, 255, 0.5);
     flex: 1;
+
+    @include phones {
+      display: none;
+    }
   }
 
   .logout__btn {
@@ -334,9 +347,17 @@
     display: block;
     border: none;
 
+    @include phones {
+      padding: 20px 10px;
+    }
+
     &--active {
       color: #ff8f01;
-      border-bottom: 2px solid #ff8f01;
+      border-bottom: 3px solid #ff8f01;
+    }
+
+    &:hover {
+      color: #ff8f01;
     }
   }
 
@@ -355,6 +376,11 @@
     grid-area: about-header;
     display: flex;
     align-items: center;
+
+    @include phones {
+      flex-direction: column;
+      align-items: flex-start;
+    }
   }
 
   .about__groups {
@@ -363,10 +389,24 @@
 
   .about__title {
     margin-right: 59px;
+
+    @include phones {
+      margin: 0 0 10px;
+    }
   }
 
   .about__add-btn {
     display: flex;
+
+    &:hover {
+      .add-icon {
+        background-image: linear-gradient(to right, #d0731b, #dc9322);
+      }
+
+      .about__add-text {
+        color: #ff8f01;
+      }
+    }
   }
 
   .add-icon {
@@ -376,6 +416,10 @@
     border-radius: 50%;
     background-image: linear-gradient(to right, #006aed, #3f35cb);
     margin-right: 15px;
+
+    &:hover {
+      background-image: linear-gradient(to right, #d0731b, #dc9322);
+    }
   }
 
   .about__add-text {
@@ -385,22 +429,21 @@
   }
 
   .groups__list {
-    display: flex;
-    flex-wrap: wrap;
-  }
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 32px;
 
-  .groups__item {
-    margin-right: 32px;
-
-    &:nth-child(2n) {
-      margin-right: 0;
+    @include phones {
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(1, 1fr);
+      align-items: center;
+      row-gap: 20px;
     }
   }
 
   .group {
     display: grid;
     background-color: white;
-    width: 48%;
     min-height: 390px;
     box-shadow: 4.1px 2.9px 20px 0 rgba(0, 0, 0, 0.07);
     padding: 2.5%;
@@ -415,7 +458,7 @@
   }
 
   .group__field {
-    width: 50%;
+    width: 65%;
   }
 
   .group__input {
@@ -424,7 +467,7 @@
   }
 
   .group__btns {
-    width: 50%;
+    width: 35%;
     display: flex;
     justify-content: flex-end;
   }
@@ -453,7 +496,7 @@
       margin-right: 10px;
       
       &:first-child {
-        width: 30%;
+        width: 39%;
       }
 
       &:nth-child(2) {
@@ -475,11 +518,12 @@
   .works__container, .comments__container {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 113px 1fr 1fr;
+    grid-template-rows: 113px 1fr min-content;
     grid-template-areas:
       "header"
       "edit"
       "portfolio"
+    
   }
 
   .works__header {
@@ -505,12 +549,28 @@
       / 1fr 1fr;
     column-gap: 30px;
     margin-top: 30px;
+
+    @include tablets {
+      grid-template:
+        "edit-download" 1fr
+        "edit-form" 1.8fr
+        / 1fr;
+      padding: 0 10%;
+    }
+
+    @include phones {
+      padding: 0;
+    }
   }
 
   .edit__download {
     grid-area: edit-download;
     display: flex;
     flex-direction: column;
+
+    @include tablets {
+      margin-bottom: 30px;
+    }
   }
 
   .edit__download-window {
@@ -522,6 +582,14 @@
     align-items: center;
     justify-content: center;
     background-color: #dee4ed;
+
+    @include tablets {
+      height: 356px;
+    }
+
+    @include phones {
+      height: 276px;
+    }
   }
 
   .edit__download-text {
@@ -571,6 +639,10 @@
     color: #383bcf;
     font-weight: 600;
     margin-right: 69px;
+
+    &:hover {
+      color: #ff8f01;
+    }
   }
 
 
@@ -578,17 +650,32 @@
     grid-area: portfolio;
     display: flex;
     flex-direction: column;
+    padding: 5% 0;
+
+    @include tablets {
+      align-self: start;
+    }
   }
 
   .portfolio__list {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 30px;
+
+    @include desktop1000 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include phones {
+      grid-template-columns: 1fr;
+      grid-template-rows: 200px repeat(1, 1fr);
+    }
   }
 
   .portfolio__item {
     height: 558px;
     grid-template: 1fr 0.2fr 1.5fr 0.2fr / 1fr;
+
   }
 
   .new__add {
@@ -597,6 +684,12 @@
     justify-content: center;
     align-items: center;
     background-image: linear-gradient(to right, #006aed, #3f35cb);
+
+    @include phones {
+      align-items: flex-start;
+      height: 200px;
+    }
+
   }
 
   .new__add-btn {
@@ -604,6 +697,21 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    @include phones {
+      flex-direction: initial;
+      padding-left: 5%;
+    }
+
+    &:hover {
+      .new__add-icon {
+        color: #ff8f01;
+        border-color: #ff8f01;
+      }
+      .new__add-text {
+        color: #ff8f01;
+      }
+    }
   }
 
   .new__add-icon {
@@ -617,6 +725,14 @@
     font-size: 72px;
     color: white;
     margin-bottom: 30px;
+
+    @include phones {
+      width: 78px;
+      height: 78px;
+      margin-bottom: 0;
+      margin-right: 30px;
+      font-size: 48px;
+    }
   }
 
   .new__add-text {
@@ -681,6 +797,10 @@
   .item__link {
     font-weight: 700;
     color: #383bcf;
+
+    &:hover {
+      color: #ff8f01;
+    }
   }
 
   .item__btns {
@@ -699,6 +819,11 @@
       height: 16px;
       background: svg-load('pencil.svg', fill=#383bcf, width=100%, height=100%);;
     }
+
+    &:hover {
+      color: #ff8f01;
+      text-decoration: underline;
+    }
   }
 
   .item__delete {
@@ -709,6 +834,11 @@
       width: 16px;
       height: 16px;
       background: svg-load('remove.svg', fill=#bf2929, width=100%, height=100%);;
+    }
+
+    &:hover {
+      color: #ff8f01;
+      text-decoration: underline;
     }
   }
 
@@ -734,7 +864,18 @@
     display: grid;
     grid-template: 1fr / 1fr 2.5fr;
     grid-template-areas: 
-      "add-photo add-form"
+      "add-photo add-form";
+    
+    @include tablets {
+      grid-template: 1fr / 1fr 1.4fr;
+    }
+
+    @include phones {
+      grid-template: 1fr 1.4fr / 1fr;
+      grid-template-areas: 
+      "add-photo"
+      "add-form";
+    }
   }
 
   .add-comment__add-photo {
@@ -772,6 +913,10 @@
     font-size: 16px;
     color: #383bcf;
     font-weight: 600;
+
+    &:hover {
+      color: #ff8f01;
+    }
   }
 
   .add-comment__form {
@@ -786,10 +931,23 @@
     }
   }
 
+  .comments__wrapper {
+    padding: 5% 0;
+  }
+
   .comments__list {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 30px;
+
+    @include tablets {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include phones {
+      grid-template-columns: 1fr;
+      grid-template-rows: 200px repeat(1, 1fr);
+    }
   }
 
   .comments__item {
@@ -797,7 +955,18 @@
     grid-template: 1fr 3fr 0.2fr / 1fr;
     padding: 5% 0;
     grid-gap: 20px;
+
+    @include tablets {
+      min-height: 430px;
+    }
+
   }
+
+  .comments__item.new__add {
+    @include phones {
+      min-height: 200px;
+    }
+  } 
 
   .comments__profile {
     display: flex;

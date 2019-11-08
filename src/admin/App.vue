@@ -31,27 +31,27 @@
             .about__groups.groups
               ul.groups__list
                 li.groups__item.group
-                  .group__header
+                  form.group__header
                     .group__field
                       input.group__input(type="text" name="groupName" placeholder="Название новой группы" required) 
                     .group__btns
                       button.group__btn.group__btn--type--submit(type="submit")
                       button.group__btn.group__btn--type--reset(type="reset")
                   .group__skills
-                  .group__add
+                  form.group__add
                     input.group__input(type="text" name="skillName" placeholder="Новый навык" required) 
                     input.group__input(type="text" name="skillPercent" placeholder="100 %" required) 
                     button.group__add-btn(type="submit")
                       .add-icon + 
                 li.groups__item.group
-                  .group__header
+                  form.group__header
                     .group__field
                       input.group__input(type="text" name="groupName" placeholder="Название новой группы" required) 
                     .group__btns
                       button.group__btn.group__btn--type--submit(type="submit")
                       button.group__btn.group__btn--type--reset(type="reset")
                   .group__skills
-                  .group__add
+                  form.group__add
                     input.group__input(type="text" name="skillName" placeholder="Новый навык" required) 
                     input.group__input(type="text" name="skillPercent" placeholder="100 %" required) 
                     button.group__add-btn(type="submit")
@@ -250,6 +250,7 @@
     font-weight: 700;
     border-bottom: 1px solid #1f232d;
     align-items: center;
+    min-width: 0;
   }
 
   .bigbtn {
@@ -441,6 +442,10 @@
     }
   }
 
+  .groups__item {
+    min-width: 0;
+  }
+
   .group {
     display: grid;
     background-color: white;
@@ -549,6 +554,7 @@
       / 1fr 1fr;
     column-gap: 30px;
     margin-top: 30px;
+    min-width: 0;
 
     @include tablets {
       grid-template:
@@ -567,6 +573,8 @@
     grid-area: edit-download;
     display: flex;
     flex-direction: column;
+    min-width: 0;
+    width: 100%;
 
     @include tablets {
       margin-bottom: 30px;
@@ -858,6 +866,7 @@
       "add-section" 1fr
       / 1fr;
     row-gap: 30px;
+    min-width: 0;
   }
 
   .add-comment__section {
@@ -865,6 +874,7 @@
     grid-template: 1fr / 1fr 2.5fr;
     grid-template-areas: 
       "add-photo add-form";
+    min-width: 0;
     
     @include tablets {
       grid-template: 1fr / 1fr 1.4fr;
@@ -884,6 +894,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    min-width: 0;
   }
 
   .add-photo__avatar {
@@ -921,6 +932,7 @@
 
   .add-comment__form {
     grid-area: add-form;
+    min-width: 0;
   }
 
   .form__block--comments {

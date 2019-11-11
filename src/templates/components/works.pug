@@ -5,6 +5,7 @@ script(type="text/x-template")#slider-container
       :current-work="currentWork"
       :current-index="currentIndex"
       @slide="handleSlide"
+      @displayWork="displaySlide"
     )
     info(
       :current-work="currentWork"
@@ -20,6 +21,7 @@ script(type="text/x-template")#slider-display
         previews(
           :works="works"
           :current-work="currentWork"
+          @displayWork="$emit('displayWork')"
         )
         btns(
           @slide="$emit('slide', $event)"
@@ -33,7 +35,7 @@ script(type="text/x-template")#slider-previews
         :key="work.id"
         :class="{active: work.id === currentWork.id }"
       )
-        a.slider__preview-link
+        a.slider__preview-link(@click.prevent="$emit('displayWork')")
           img.slider__preview-pic(:src="work.photo")
 
 script(type="text/x-template")#slider-btns

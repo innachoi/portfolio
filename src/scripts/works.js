@@ -72,6 +72,9 @@ new Vue({
           this.currentIndex--;
           break;
       }
+    },
+    displaySlide(slideIndex) {
+
     }
   },
   created() {

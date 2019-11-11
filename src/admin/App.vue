@@ -1,122 +1,13 @@
 <template lang="pug">
     .wrapper.admin-wrapper
-      header.admin-header
-        .container.header__container
-          .header__user
-            .user__avatar
-              img(class="user__avatar-pic" src="../images/content/my_photo.jpg" )
-          .header__profile
-            .header__profile-name Инна Цой
-            .header__profile-title Панель администрирования
-            .header__profile-logout
-              a.logout__btn Выйти
-      nav.admin-menu
-        ul.container.admin-menu__list
-          li.admin-menu__item
-            a(href="#").admin-menu__link.admin-menu__link--active Обо мне
-          li.admin-menu__item
-            a(href="#").admin-menu__link Работы
-          li.admin-menu__item
-            a(href="#").admin-menu__link Отзывы
-      .maincontent  
-        
-        section.about
-          .container.about__container
-            .about__header
-              h2.section__title.about__title Блок "Обо мне"
-              button.about__add-btn
-                .add-icon +
-                .about__add-text Добавить группу
+      login
+      headerAdmin
+      menuAdmin
 
-            .about__groups.groups
-              ul.groups__list
-                li.groups__item.group
-                  form.group__header
-                    .group__field
-                      input.group__input(type="text" name="groupName" placeholder="Название новой группы" required) 
-                    .group__btns
-                      button.group__btn.group__btn--type--submit(type="submit")
-                      button.group__btn.group__btn--type--reset(type="reset")
-                  .group__skills
-                  form.group__add
-                    input.group__input(type="text" name="skillName" placeholder="Новый навык" required) 
-                    input.group__input(type="text" name="skillPercent" placeholder="100 %" required) 
-                    button.group__add-btn(type="submit")
-                      .add-icon + 
-                li.groups__item.group
-                  form.group__header
-                    .group__field
-                      input.group__input(type="text" name="groupName" placeholder="Название новой группы" required) 
-                    .group__btns
-                      button.group__btn.group__btn--type--submit(type="submit")
-                      button.group__btn.group__btn--type--reset(type="reset")
-                  .group__skills
-                  form.group__add
-                    input.group__input(type="text" name="skillName" placeholder="Новый навык" required) 
-                    input.group__input(type="text" name="skillPercent" placeholder="100 %" required) 
-                    button.group__add-btn(type="submit")
-                      .add-icon + 
-            
-        section.works
-          .container.works__container
-            .works__header
-              h2.section__title Блок "Работы"
-            .works__edit-wrapper.edit
-              .section-subtitle Редактирование работы
-              .edit__section
-                .edit__download
-                  .edit__download-window 
-                    .edit__download-text Перетащите или загрузите изображение
-                    button.bigbtn.edit__download-btn ЗАГРУЗИТЬ
-                .edit__form
-                  form.form
-                    .form__row
-                      label.form__block
-                        .form__block-title Название
-                        input.form__input(type="text" name="workName" required) 
-                    .form__row
-                      label.form__block
-                        .form__block-title Ссылка
-                        input.form__input(type="text" name="workLink" required) 
-                    .form__row
-                      label.form__block
-                        .form__block-title Описание
-                        textarea.form__input.form__textarea(type="s" name="workDesc") 
-                    .form__row
-                      label.form__block
-                        .form__block-title Добавление тега
-                        input.form__input(type="text" name="workLink" required) 
-                    .form__row
-                      button.form__btn-reset(type="reset") Отмена
-                      button.bigbtn.form__btn-submit(type="submit") СОХРАНИТЬ
-            .works__portfolio-wrapper.portfolio
-              ul.portfolio__list
-                li.portfolio__item.new__add
-                  button.new__add-btn
-                    .new__add-icon +
-                    .new__add-text Добавить работу
-                li.portfolio__item.item
-                  .item__cover
-                    img.item__cover-img(src="../images/content/portfolio_pr1.jpg")
-                  .item__tags
-                    ul.tags__list
-                      li.tags__item Javascript
-                      li.tags__item HTML
-                
-                  .item__text
-                    .item__title Сайт школы
-                    .item__desc
-                      p Эта девушка проходила обучение веб-разработке не где-то, а в Loftschool!
-                    a.item__link loftschool.com
-                  .item__btns
-                    button.item__edit 
-                      .item__btn-text Править
-                      .item__btn-icon
-                    button.item__delete
-                      .item__btn-text Удалить
-                      .item__btn-icon
-                  
-                  //- Добавить элементы через Vue
+      .maincontent  
+        about
+        works
+
                   
         section.comments
           .container.comments__container
@@ -168,23 +59,100 @@
                       .item__btn-icon
                         //- Добавить список отзывов
 
-
-        
-
-
-
-
-
 </template>
+
+<script>
+import login from './components/login';
+import header from './components/header';
+import menu from './components/menu';
+
+import about from './pages/about';
+import works from './pages/works';
+
+export default {
+  name: 'app',
+  components: {
+    login,
+    headerAdmin: header,
+    menuAdmin: menu,
+    about,
+    works
+  }
+}
+</script>
 
 <style lang="postcss">
   @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800&display=swap&subset=cyrillic');
   @import "normalize.css";
   @import "../styles/mixins.pcss";
-  @import "../styles/layout/base.pcss";
+  /* @import "../styles/layout/base.pcss"; */
+
+  html {
+  @include desktop {
+    font-size: 15px;
+  }
+  @include tablets {
+    font-size: 14px;
+  }
+  }
+
+  body,
+  html {
+    width: 100%;
+    height: 100%;
+  }
 
   body {
+    font-family: 'Open Sans', Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 1.42;
+    font-weight: 600;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     color: #1b1f22;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: normal;
+    margin: 0;
+  }
+
+  p {
+    margin: 0;
+    padding: 0;
+  }
+
+  button[type="button"] {
+    cursor: pointer;
+    background-color: transparent;
+  }
+
+  a {
+  color: inherit;
+  cursor: pointer;
+  text-decoration: none;
+  }
+
+  img {
+    display: block;
+    object-fit: cover;
+    max-width: 100%;
+    max-height: 100%;
   }
   
   button, a, input {
@@ -210,6 +178,7 @@
   .admin-wrapper {
     /* width: 100vw;
     min-height: 100vh; */
+    position: relative;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 78px 76px 1fr;
@@ -219,24 +188,22 @@
       "maincontent"
   }
 
-
-  .admin-header {
-    grid-area: header;
-    background-color: #1b1f22;
-    display: grid;
-    grid-template: 1fr / 1fr;
-    justify-items: center;
-  }
-
   .maincontent {
     grid-area: maincontent;
     background: #f8fafe;
   }
 
   .container {
+    display: flex;
+    margin: 0 auto;
+    max-width: 1480px;
     width: 90%;
     height: 100%;
     align-items: center;
+
+    @include phones {
+      width: 85%;
+    }
   }
 
   .section__title {
@@ -269,352 +236,21 @@
 
   /* Header */
 
-  .header__container {
-    display: grid;
-    grid-template:
-      "user profile" 1fr
-      / min-content 1fr;
-  }
-
-  .user__avatar {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    overflow: hidden;
-    margin-right: 22px;
-  }
-
-  .user__avatar-pic {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .header__profile {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    @include phones {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-  }
-
-  .header__profile-name {
-    color: white;
-    font-size: 18px;
-    margin-right: 30px;
-  }
-
-  .header__profile-title {
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.5);
-    flex: 1;
-
-    @include phones {
-      display: none;
-    }
-  }
-
-  .logout__btn {
-    color: rgba(255, 255, 255, 0.5);
-    text-decoration: underline;
-    transition: color .3s;
-
-    &:hover {
-      color: #ff8f01;
-      transition: .3s;
-    }
-  }
 
   /* Navigation */
 
-  .admin-menu__list {
-    display: flex;
-    align-items: center;
-  }
-
-  .admin-menu__item {
-    margin-right: 32px;
-
-    &:last-child {
-      margin-right: 0;
-    }
-  }
-
-  .admin-menu__link {
-    padding: 28px 26px;
-    display: block;
-    border: none;
-
-    @include phones {
-      padding: 20px 10px;
-    }
-
-    &--active {
-      color: #ff8f01;
-      border-bottom: 3px solid #ff8f01;
-    }
-
-    &:hover {
-      color: #ff8f01;
-    }
-  }
 
   /* About */
 
-  .about__container {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 113px 1fr;
-    grid-template-areas: 
-      "about-header"
-      "about-content"
-  }
 
-  .about__header {
-    grid-area: about-header;
-    display: flex;
-    align-items: center;
-
-    @include phones {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-  }
-
-  .about__groups {
-    grid-area: about-content;
-  }
-
-  .about__title {
-    margin-right: 59px;
-
-    @include phones {
-      margin: 0 0 10px;
-    }
-  }
-
-  .about__add-btn {
-    display: flex;
-
-    &:hover {
-      .add-icon {
-        background-image: linear-gradient(to right, #d0731b, #dc9322);
-      }
-
-      .about__add-text {
-        color: #ff8f01;
-      }
-    }
-  }
-
-  .add-icon {
-    width: 21px;
-    height: 21px;
-    color: white;
-    border-radius: 50%;
-    background-image: linear-gradient(to right, #006aed, #3f35cb);
-    margin-right: 15px;
-
-    &:hover {
-      background-image: linear-gradient(to right, #d0731b, #dc9322);
-    }
-  }
-
-  .about__add-text {
-    font-size: 16px;
-    font-weight: 600;
-    color: #383bcf;
-  }
-
-  .groups__list {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    column-gap: 32px;
-
-    @include phones {
-      grid-template-columns: 1fr;
-      grid-template-rows: repeat(1, 1fr);
-      align-items: center;
-      row-gap: 20px;
-    }
-  }
-
-  .groups__item {
-    min-width: 0;
-  }
-
-  .group {
-    display: grid;
-    background-color: white;
-    min-height: 390px;
-    box-shadow: 4.1px 2.9px 20px 0 rgba(0, 0, 0, 0.07);
-    padding: 2.5%;
-    grid-template-columns: 1fr;
-    grid-template-rows: 12% 1fr 12%;
-    align-items: center;
-  }
-
-  .group__header {
-    display: flex;
-    align-items: center;
-  }
-
-  .group__field {
-    width: 65%;
-  }
-
-  .group__input {
-    width: 100%;
-    /* border: none; */
-  }
-
-  .group__btns {
-    width: 35%;
-    display: flex;
-    justify-content: flex-end;
-  }
-
-  .group__btn {
-    width: 15px;
-    height: 15px;
-
-    &--type--submit {
-      background: svg-load('tick.svg', fill=#00d70a, width=100%, height=100%);
-      margin-right: 19px;
-    }
-
-    &--type--reset {
-      background: svg-load('remove.svg', fill=#bf2929, width=14px, height=12px);
-      background-repeat: no-repeat;
-    }
-  }
-
-  .group__add {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    
-    .group__input {
-      margin-right: 10px;
-      
-      &:first-child {
-        width: 39%;
-      }
-
-      &:nth-child(2) {
-        width: 15%;
-        margin-right: 25px;
-      }
-    }
-
-    .add-icon {
-      width: 40px;
-      height: 40px;
-      font-size: 30px;
-      margin-right: 0;
-    }
-  }
 
   /* Works */
 
-  .works__container, .comments__container {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 113px 1fr min-content;
-    grid-template-areas:
-      "header"
-      "edit"
-      "portfolio"
-    
-  }
-
-  .works__header {
-    grid-area: header;
-  }
-
-  .works__edit-wrapper {
-    grid-area: edit;
-    background: white;
-    box-shadow: 4.1px 2.9px 20px 0 rgba(0, 0, 0, 0.07);
-    padding: 0 2.5% 2.5%;
-    display: grid;
-    grid-template: 
-      "edit-header" 77px 
-      "edit" 1fr
-      / 1fr;
-  }
-
-  .edit__section {
-    display: grid;
-    grid-template:
-      "edit-download edit-form" 1fr
-      / 1fr 1fr;
-    column-gap: 30px;
-    margin-top: 30px;
-    min-width: 0;
-
-    @include tablets {
-      grid-template:
-        "edit-download" 1fr
-        "edit-form" 1.8fr
-        / 1fr;
-      padding: 0 10%;
-    }
-
-    @include phones {
-      padding: 0;
-    }
-  }
-
-  .edit__download {
-    grid-area: edit-download;
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-    width: 100%;
-
-    @include tablets {
-      margin-bottom: 30px;
-    }
-  }
-
-  .edit__download-window {
-    width: 100%;
-    height: 276px;
-    border: 1px dashed #a1a1a1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: #dee4ed;
-
-    @include tablets {
-      height: 356px;
-    }
-
-    @include phones {
-      height: 276px;
-    }
-  }
-
-  .edit__download-text {
-    font-size: 16px;
-    padding: 0 21%;
-    text-align: center;
-    color: rgba(65, 76, 99, 0.5);
-    margin-bottom: 32px;
-  }
-
-  .edit__form {
-    grid-area: edit-form;
-  }
 
   .form__row {
     margin-bottom: 34px;
     display: flex;
+    align-items: center;
 
     &:last-child {
       margin-bottom: 0;
@@ -654,37 +290,6 @@
   }
 
 
-  .works__portfolio-wrapper {
-    grid-area: portfolio;
-    display: flex;
-    flex-direction: column;
-    padding: 5% 0;
-
-    @include tablets {
-      align-self: start;
-    }
-  }
-
-  .portfolio__list {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 30px;
-
-    @include desktop1000 {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    @include phones {
-      grid-template-columns: 1fr;
-      grid-template-rows: 200px repeat(1, 1fr);
-    }
-  }
-
-  .portfolio__item {
-    height: 558px;
-    grid-template: 1fr 0.2fr 1.5fr 0.2fr / 1fr;
-
-  }
 
   .new__add {
     display: flex;

@@ -39,7 +39,7 @@
               .new__add-text Добавить работу
           li.portfolio__item.item
             .item__cover
-              img.item__cover-img(src="../../images/content/portfolio_pr1.jpg")
+              img.item__cover-img(src="../../../images/content/portfolio_pr1.jpg")
             .item__tags
               ul.tags__list
                 li.tags__item Javascript
@@ -67,12 +67,12 @@ export default {
 }
 </script>
 
-<style lang="postcss">
+<style lang="postcss" scoped>
   @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800&display=swap&subset=cyrillic');
   @import "normalize.css";
-  @import "../../styles/mixins.pcss";
+  @import "../../../styles/mixins.pcss";
 
-  .works__container, .comments__container {
+  .works__container {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 113px 1fr min-content;

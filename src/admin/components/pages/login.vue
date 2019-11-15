@@ -2,38 +2,62 @@
   .login
     .container.login__container
       .login__window
-        form.login__form
-          button.login__close-btn x
+        form(@submit.prevent="login").login__form
+          //- button(type="button").login__close-btn x
           h2.login__title Авторизация
           .form__row.login__form-row.login__form-row--login
             label.form__input-wrapper.login__form-wrapper Логин
-              input.form__input.login__form-input(type="text")
+              input(type="text" v-model="user.name").form__input.login__form-input
           .form__row.login__form-row.login__form-row--password
             label.form__input-wrapper.login__form-wrapper Пароль
-              input.form__input.login__form-input(type="text")
+              input(type="text" v-model="user.password").form__input.login__form-input
           .login__form-btn
-            button.bigbtn.login__send-btn ОТПРАВИТЬ
+            button(type="submit").bigbtn.login__send-btn ОТПРАВИТЬ
 </template>
 
 <script>
+import $axios from '../../requests';
+
 export default {
-  name: 'login'
+  name: 'login',
+  data: () => ({
+    user: {
+      name: "",
+      password: ""
+    }
+  }),
+  methods: {
+    async login() {
+      try {
+        const {
+          data: {token}
+        } = await $axios.post('/login', this.user);
+        // Сохраняем полученный токен
+
+        localStorage.setItem("token", token);
+        $axios.defaults.headers["Authorization"] = `Bearer ${token}`;
+
+        this.router.replace("/");
+      } catch (error) {
+        // вывести ошибку!!!
+      }
+    }
+  }
 }
 </script>
 
 <style lang="postcss" scoped>
   @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800&display=swap&subset=cyrillic');
   @import "normalize.css";
-  @import "../../styles/mixins.pcss";
+  @import "../../../styles/mixins.pcss";
 
   .login {
-    display: none;
+    display: flex;
     position: fixed;
     width: 100vw;
     height: 100vh;
-    background-image: url(../../images/background/login_bg.jpg);
+    background-image: url(../../../images/background/login_bg.jpg);
     z-index: 1000;
-    /* display: flex; */
     align-items: center;
     justify-content: center;
 

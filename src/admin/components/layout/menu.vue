@@ -18,7 +18,7 @@ export default {
 <style lang="postcss">
   @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800&display=swap&subset=cyrillic');
   @import "normalize.css";
-  @import "../../styles/mixins.pcss";
+  @import "../../../styles/mixins.pcss";
 
   .admin-menu__list {
     display: flex;

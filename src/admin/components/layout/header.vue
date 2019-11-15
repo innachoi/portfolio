@@ -3,7 +3,7 @@
     .container.header__container
       .header__user
         .user__avatar
-          img(class="user__avatar-pic" src="../../images/content/my_photo.jpg" )
+          img(class="user__avatar-pic" src="../../../images/content/my_photo.jpg" )
       .header__profile
         .header__profile-name Инна Цой
         .header__profile-title Панель администрирования
@@ -20,7 +20,7 @@ export default {
 <style lang="postcss">
   @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800&display=swap&subset=cyrillic');
   @import "normalize.css";
-  @import "../../styles/mixins.pcss";
+  @import "../../../styles/mixins.pcss";
 
   .admin-header {
     grid-area: header;

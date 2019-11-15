@@ -9,10 +9,10 @@
 
       .about__groups.groups
         ul.groups__list
-          li.groups__item.group
-            form.group__header
+          li(v-for="category in categories" :key="category.id").groups__item.group
+            form(@submit.prevent="addNewCategory").group__header
               .group__field
-                input.group__input(type="text" name="groupName" placeholder="Название новой группы" required) 
+                input(type="text" v-model="title" name="groupName" placeholder="Название новой группы" required).group__input
               .group__btns
                 button.group__btn.group__btn--type--submit(type="submit")
                 button.group__btn.group__btn--type--reset(type="reset")
@@ -51,7 +51,7 @@
               .group__btns
                 button.group__btn.group__btn--type--submit(type="submit")
                 button.group__btn.group__btn--type--reset(type="reset")
-            .group__skills
+            form.group__skills
             form.group__add
               input.group__input(type="text" name="skillName" placeholder="Новый навык" required) 
               input.group__input(type="text" name="skillPercent" placeholder="100 %" required) 
@@ -60,15 +60,39 @@
 </template>
 
 <script>
+import { mapActions, mapState } from "vuex";
+
 export default {
-  name: 'about'
+  name: 'about',
+  data: () => ({
+    title: "",
+  }),
+  created() {
+    this.fetchCategories();
+  },
+  computed: {
+    ...mapState("categories", {
+      categories: state => state.categories
+    })
+  },
+  methods: {
+    ...mapActions("categories", ["addCategory", "fetchCategories"]),
+    async addNewCategory() {
+      try {
+        await this.addCategory(this.title);
+      } catch (error) {
+        // Вывести сообщение об ошибке!!!
+        alert(error.message);
+      }
+    }
+  }
 }
 </script>
 
-<style lang="postcss">
+<style lang="postcss" scoped>
   @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800&display=swap&subset=cyrillic');
   @import "normalize.css";
-  @import "../../styles/mixins.pcss";
+  @import "../../../styles/mixins.pcss";
 
   .about__container {
     display: grid;

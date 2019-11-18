@@ -3,7 +3,12 @@ import Vue from "vue"
 
 const previews = {
   template: "#slider-previews",
-  props: ["works", "currentWork"]
+  props: ["works", "currentWork"],
+  // computed: {
+  //   slicedWorks() {
+  //     return [...this.works].slice(0, 3);
+  //   }
+  // }
 }
 
 const btns = {
@@ -38,15 +43,13 @@ new Vue({
   components: { display, info },
   data: () => ({
     works: [],
+    disabled: false,
     currentIndex: 0
   }),
   computed: {
     currentWork() {
       return this.works[this.currentIndex];
     },
-    // slicedWorks() {
-    //   return [...this.works].slice(0, 3);
-    // }
   },
   watch: {
     currentIndex(value) {
@@ -54,10 +57,31 @@ new Vue({
     }
   },
   methods: {
-    enterWork(el, done) {
+    beforeCb() {
+      this.disabled = true;
+    },
+    enterWork(el) {
       console.log('enter', el);
-      done()
-      
+      const list = el.closest("ul");
+
+      el.classList.add("outsided");
+      list.classList.add('transition');
+      list.style.transform = "translateX(el.style.offsetWidth)"
+
+      list.addEventListener("transitionend", () => done())
+    },
+    afterCb(el) {
+      const list = el.closest("ul");
+
+      el.classList.remove("outsided");
+      list.style.transform = "translateX(0px)";
+
+      this.disabled = false;
+    },
+    leaveCb(el, done) {
+      el.classList.add('fade');
+
+      el.addEventListener('transitionend', () => done())
     },
     makeInfiniteLoop(value) {
       const worksAmount = this.works.length - 1;
@@ -93,6 +117,5 @@ new Vue({
   created() {
     const data = require('../scripts/data/works.json');
     this.works = this.makeArrFromRequiredImages(data);
-    this.currentWork = this.works[this.currentIndex];
   }
 })

@@ -122,6 +122,10 @@
 
 .slider__preview-list {
   display: flex;
+
+  &.transition {
+    transition: 1s;
+  }
 }
 
 .slider__preview-item {
@@ -336,4 +340,14 @@
   &:hover {
     text-decoration: underline;
   }
+}
+
+.outsided {
+  position: absolute;
+  right: 100%;
+}
+
+.fade {
+  opacity: 0;
+  transition: 1s;
 }

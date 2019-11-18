@@ -3,70 +3,54 @@
     .container.about__container
       .about__header
         h2.section__title.about__title Блок "Обо мне"
-        button.about__add-btn
-          .add-icon +
-          .about__add-text Добавить группу
+        form
+          button(type="submit").about__add-btn
+            .add-icon +
+            .about__add-text Добавить группу
 
       .about__groups.groups
         ul.groups__list
-          li(v-for="category in categories" :key="category.id").groups__item.group
-            form(@submit.prevent="addNewCategory").group__header
-              .group__field
-                input(type="text" v-model="title" name="groupName" placeholder="Название новой группы" required).group__input
-              .group__btns
-                button.group__btn.group__btn--type--submit(type="submit")
-                button.group__btn.group__btn--type--reset(type="reset")
-            form.group__skills
-              .form__row
-                label.group__input-wrapper.skill-name
-                  input.group__input.skill-input(type="text" name="skillName" placeholder="HTML5" readonly)
-                label.group__input-wrapper.skill-percent
-                  input.group__input.skill-input(type="text" name="skillPercent" placeholder="80%" readonly)
-                .group__btns
-                  button.group__btn.group__btn--type--edit(type="button")
-                  button.group__btn.group__btn--type--delete(type="button")
-                .group__btns.group__btns--type--submit
-                  button.group__btn.group__btn--type--submit(type="submit")
-                  button.group__btn.group__btn--type--reset(type="reset")
-              .form__row
-                label.group__input-wrapper.skill-name
-                  input.group__input.skill-input(type="text" name="skillName" placeholder="CSS3" readonly)
-                label.group__input-wrapper.skill-percent
-                  input.group__input.skill-input(type="text" name="skillPercent" placeholder="70%" readonly)
-                .group__btns.group__btns--type--edit
-                  button.group__btn.group__btn--type--edit(type="button")
-                  button.group__btn.group__btn--type--delete(type="button")
-                .group__btns.group__btns--type--submit
-                  button.group__btn.group__btn--type--submit(type="submit")
-                  button.group__btn.group__btn--type--reset(type="reset")
-            form.group__add
-              input.group__input(type="text" name="skillName" placeholder="Новый навык" required) 
-              input.group__input(type="text" name="skillPercent" placeholder="100 %" required) 
-              button.group__add-btn(type="submit")
-                .add-icon + 
+          //- li(v-for="category in categories" :key="category.id").groups__item.group
+          //-   skills-group(
+          //-     :category="category"
+          //-   )
           li.groups__item.group
-            form.group__header
-              .group__field
-                input.group__input(type="text" name="groupName" placeholder="Название новой группы" required) 
-              .group__btns
-                button.group__btn.group__btn--type--submit(type="submit")
-                button.group__btn.group__btn--type--reset(type="reset")
-            form.group__skills
-            form.group__add
-              input.group__input(type="text" name="skillName" placeholder="Новый навык" required) 
-              input.group__input(type="text" name="skillPercent" placeholder="100 %" required) 
-              button.group__add-btn(type="submit")
-                .add-icon + 
+            .group__container
+              form(@submit.prevent="addNewCategory").group__header
+                .group__field
+                  input(type="text" v-model="title" name="groupName" placeholder="Название новой группы" required).group__input
+                .group__btns
+                  button.group__btn.group__btn--type--submit(type="submit")
+                  button.group__btn.group__btn--type--reset(type="reset")
+              //- skills-item(v-for="(skill, index) in skills" :skill="skillsItem" :key="index")
+              form.group__add(@submit.prevent="submitNewSkill")
+                input.group__input(type="text" v-model="newSkillData.name" name="skillName" placeholder="Новый навык" required) 
+                input.group__input(type="text" v-model="newSkillData.percent" name="skillPercent" placeholder="100 %" required) 
+                button.group__add-btn(type="submit")
+                  .add-icon + 
+          
 </template>
 
 <script>
 import { mapActions, mapState } from "vuex";
+import $axios from '../../requests';
+import { Validator } from 'simple-vue-validator';
 
 export default {
   name: 'about',
-  data: () => ({
-    title: "",
-  }),
+  data() {
+    return{
+      title: "",
+      newSkillData: {
+        name: "",
+        percent: ""
+      }
+    }
+  },
+  components: {
+    skillsGroup: () => import("../elems/skills-group"),
+    skillsItem:() => import("../elems/skills-item")
+  },
   created() {
     this.fetchCategories();
   },
@@ -74,6 +58,14 @@ export default {
     ...mapState("categories", {
       categories: state => state.categories
     })
+  },
+  validators: {
+    'newSkillData.name': function(value) {
+      return Validator.value(value).required('Заполните поле перед отправкой');
+    },
+    'newSkillData.percent': function(value) {
+      return Validator.value(value).required('Заполните поле перед отправкой');
+    },
   },
   methods: {
     ...mapActions("categories", ["addCategory", "fetchCategories"]),
@@ -83,6 +75,13 @@ export default {
       } catch (error) {
         // Вывести сообщение об ошибке!!!
         alert(error.message);
+      }
+    },
+    async submitNewSkill() {
+      const success = await this.$validate();
+
+      if(success) {
+        console.log('Скилл успешно отправлен');
       }
     }
   }
@@ -178,7 +177,7 @@ export default {
     min-width: 0;
   }
 
-  .group {
+  .group__container {
     display: grid;
     background-color: white;
     min-height: 390px;

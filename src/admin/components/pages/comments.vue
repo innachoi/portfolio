@@ -5,23 +5,24 @@
         h2.section__title Блок "Отзывы"
       .comments__add-wrapper.add-comment
         .section-subtitle Новый отзыв
-        .add-comment__section
+        form.add-comment__section(@submit.prevent="submitNewComment")
           .add-comment__add-photo
             .add-photo__avatar
+            input(type="file" style="display:none")
             button.add-photo__btn Добавить фото
           .add-comment__form
-            form.form
+            .form
               .form__row
                 label.form__block.form__block--comments
                   .form__block-title Имя автора
-                  input.form__input(type="text" name="commentAuthor" required)
+                  input.form__input(type="text" v-model="comment.name" :error-text="validation.firstError('comment.name')" name="commentAuthor")
                 label.form__block.form__block--comments
                   .form__block-title Титул автора
-                  input.form__input(type="text" name="commentJob")
+                  input.form__input(type="text" v-model="comment.job" name="commentJob")
               .form__row
                 label.form__block
                   .form__block-title Отзыв
-                  textarea.form__input.form__textarea(type="comment" name="commentComment" required)
+                  textarea.form__input.form__textarea(type="comment" v-model="comment.text" name="commentComment")
               .form__row
                 button.form__btn-reset(type="reset") Отмена
                 button.bigbtn.form__btn-submit(type="submit") СОХРАНИТЬ
@@ -51,8 +52,41 @@
 </template>
 
 <script>
+import $axios from '../../requests';
+import { Validator } from 'simple-vue-validator';
+
 export default {
-  name: 'comments'
+  name: 'comments',
+
+  data() {
+    return {
+      comment: {
+        name: "",
+        job: "",
+        text: ""
+      }
+    }
+  },
+  validators: {
+    'comment.name': function(value) {
+      return Validator.value(value).required('Заполните поле перед отправкой');
+    },
+    'comment.job': function(value) {
+      return Validator.value(value).required('Заполните поле перед отправкой');
+    },
+    'comment.text': function(value) {
+      return Validator.value(value).required('Заполните поле перед отправкой');
+    },
+  },
+  methods: {
+    async submitNewComment() {
+      const success = await this.$validate();
+
+      if(success) {
+        console.log('Комментарий успешно отправлен');
+      }
+    }
+  }
 }
 </script>
 

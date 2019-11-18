@@ -5,29 +5,30 @@
         h2.section__title Блок "Работы"
       .works__edit-wrapper.edit
         .section-subtitle Редактирование работы
-        .edit__section
+        form.edit__section(@submit.prevent="submitNewWork")
           .edit__download
             .edit__download-window 
               .edit__download-text Перетащите или загрузите изображение
-              button.bigbtn.edit__download-btn ЗАГРУЗИТЬ
+              input(type="file" style="display:none")
+              button(type="button").bigbtn.edit__download-btn ЗАГРУЗИТЬ
           .edit__form
-            form.form
+            .form
               .form__row
                 label.form__block
                   .form__block-title Название
-                  input.form__input(type="text" name="workName" required) 
+                  input.form__input(type="text" v-model="work.name" name="workName" required) 
               .form__row
                 label.form__block
                   .form__block-title Ссылка
-                  input.form__input(type="text" name="workLink" required) 
+                  input.form__input(type="text" v-model="work.link" name="workLink" required) 
               .form__row
                 label.form__block
                   .form__block-title Описание
-                  textarea.form__input.form__textarea(type="s" name="workDesc") 
+                  textarea.form__input.form__textarea(type="text" v-model="work.desc" name="workDesc" required) 
               .form__row
                 label.form__block
                   .form__block-title Добавление тега
-                  input.form__input(type="text" name="workLink" required) 
+                  input.form__input(type="text" v-model="work.tags" name="workLink" required) 
               .form__row
                 button.form__btn-reset(type="reset") Отмена
                 button.bigbtn.form__btn-submit(type="submit") СОХРАНИТЬ
@@ -62,8 +63,44 @@
 </template>
 
 <script>
+import $axios from '../../requests';
+import { Validator } from 'simple-vue-validator';
+
 export default {
-  name: 'works'
+  name: 'works',
+  data() {
+    return {
+      work: {
+        name: "",
+        link: "",
+        desc: "",
+        tags: ""
+      }
+    }
+  },
+  validators: {
+    'work.name': function(value) {
+      return Validator.value(value).required('Заполните поле перед отправкой');
+    },
+    'work.link': function(value) {
+      return Validator.value(value).required('Заполните поле перед отправкой');
+    },
+    'work.desc': function(value) {
+      return Validator.value(value).required('Заполните поле перед отправкой');
+    },
+    'work.tags': function(value) {
+      return Validator.value(value).required('Заполните поле перед отправкой');
+    },
+  },
+  methods: {
+    async submitNewWork() {
+      const success = await this.$validate();
+
+      if(success) {
+        console.log('Работа успешно отправлена');
+      }
+    }
+  }
 }
 </script>
 

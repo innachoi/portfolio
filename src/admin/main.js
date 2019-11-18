@@ -1,9 +1,9 @@
 import Vue from 'vue';
 import App from './App.vue';
-import SimpleVueValidation from 'simple-vue-validator';
 import router from './router';
 import store from './store';
 import axios from './requests';
+import SimpleVueValidation from 'simple-vue-validator';
 
 
 Vue.use(SimpleVueValidation);

@@ -3,7 +3,9 @@
       header-admin
       menu-admin
 
-      router-view
+      about
+      works
+      comments
 
                   
 

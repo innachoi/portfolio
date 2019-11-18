@@ -7,11 +7,15 @@ export default {
     SET_CATEGORIES(state, categories) {
       state.categories = categories;
     },
+    ADD_CATEGORY(state, category) {
+      state.categories.unshift(category);
+    },
   },
   actions: {
-    async addCategory(store, title) {
+    async addCategory({ commit }) {
       try {
-        await this.$axios.post("/categories", { title });
+        const { data } = await this.$axios.post("/categories", { title });
+        commit("ADD_CATEGORY", data);
       } catch (error) {
         throw new Error(
           error.response.data.error || error.response.data.message

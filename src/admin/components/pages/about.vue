@@ -18,14 +18,16 @@
             .group__container
               form(@submit.prevent="addNewCategory").group__header
                 .group__field
-                  input(type="text" v-model="title" name="groupName" placeholder="Название новой группы" required).group__input
+                  input(type="text" v-model="title" name="groupName" placeholder="Название новой группы").group__input
                 .group__btns
                   button.group__btn.group__btn--type--submit(type="submit")
                   button.group__btn.group__btn--type--reset(type="reset")
               //- skills-item(v-for="(skill, index) in skills" :skill="skillsItem" :key="index")
               form.group__add(@submit.prevent="submitNewSkill")
-                input.group__input(type="text" v-model="newSkillData.name" name="skillName" placeholder="Новый навык" required) 
-                input.group__input(type="text" v-model="newSkillData.percent" name="skillPercent" placeholder="100 %" required) 
+                input.group__input(type="text" v-model="newSkillData.name" name="skillName" placeholder="Новый навык")
+                .error {{ validation.firstError('newSkillData.name') }} 
+                input.group__input(type="text" v-model="newSkillData.percent" name="skillPercent" placeholder="100 %") 
+                .error {{ validation.firstError('newSkillData.percent') }} 
                 button.group__add-btn(type="submit")
                   .add-icon + 
           
@@ -38,6 +40,7 @@ import { Validator } from 'simple-vue-validator';
 
 export default {
   name: 'about',
+  mixins: [require("simple-vue-validator").mixin],
   data() {
     return{
       title: "",
@@ -61,10 +64,10 @@ export default {
   },
   validators: {
     'newSkillData.name': function(value) {
-      return Validator.value(value).required('Заполните поле перед отправкой');
+      return Validator.value(value).required('Заполните поле');
     },
     'newSkillData.percent': function(value) {
-      return Validator.value(value).required('Заполните поле перед отправкой');
+      return Validator.value(value).required('Заполните поле');
     },
   },
   methods: {

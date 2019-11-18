@@ -10,19 +10,23 @@
             .add-photo__avatar
             input(type="file" style="display:none")
             button.add-photo__btn Добавить фото
+            .error {{ validation.firstError('comment.photo') }}
           .add-comment__form
             .form
               .form__row
                 label.form__block.form__block--comments
                   .form__block-title Имя автора
                   input.form__input(type="text" v-model="comment.name" :error-text="validation.firstError('comment.name')" name="commentAuthor")
+                  .error {{ validation.firstError('comment.name') }}
                 label.form__block.form__block--comments
                   .form__block-title Титул автора
                   input.form__input(type="text" v-model="comment.job" name="commentJob")
+                  .error {{ validation.firstError('comment.name') }}
               .form__row
                 label.form__block
                   .form__block-title Отзыв
                   textarea.form__input.form__textarea(type="comment" v-model="comment.text" name="commentComment")
+                  .error {{ validation.firstError('comment.name') }}
               .form__row
                 button.form__btn-reset(type="reset") Отмена
                 button.bigbtn.form__btn-submit(type="submit") СОХРАНИТЬ
@@ -57,10 +61,11 @@ import { Validator } from 'simple-vue-validator';
 
 export default {
   name: 'comments',
-
+  mixins: [require("simple-vue-validator").mixin],
   data() {
     return {
       comment: {
+        photo: "",
         name: "",
         job: "",
         text: ""
@@ -68,6 +73,9 @@ export default {
     }
   },
   validators: {
+    'comment.photo': function(value) {
+      return Validator.value(value).required('Загрузите фото');
+    },
     'comment.name': function(value) {
       return Validator.value(value).required('Заполните поле перед отправкой');
     },
@@ -179,6 +187,7 @@ export default {
     border-radius: 50%;
     overflow: hidden;
     margin-right: 24px;
+    flex-shrink: 0;
   }
 
   .comments__icon-pic {

@@ -42,8 +42,11 @@ new Vue({
   }),
   computed: {
     currentWork() {
-      return this.works[this.currentIndex]
-    }
+      return this.works[this.currentIndex];
+    },
+    // slicedWorks() {
+    //   return [...this.works].slice(0, 3);
+    // }
   },
   watch: {
     currentIndex(value) {
@@ -51,6 +54,11 @@ new Vue({
     }
   },
   methods: {
+    enterWork(el, done) {
+      console.log('enter', el);
+      done()
+      
+    },
     makeInfiniteLoop(value) {
       const worksAmount = this.works.length - 1;
       if (value < 0) this.currentIndex = worksAmount;
@@ -67,14 +75,19 @@ new Vue({
       switch(direction) {
         case "next":
           this.currentIndex++;
+          this.works.push(this.works[0]);
+          this.works.shift();
           break;
         case "prev":
           this.currentIndex--;
+          const lastWork = this.works[this.works.length -1];
+          this.works.unshift(lastWork);
+          // удаляем последний элемент
+          this.works.pop();
           break;
       }
     },
-    displaySlide(slideIndex) {
-
+    displaySlide(i) {
     }
   },
   created() {

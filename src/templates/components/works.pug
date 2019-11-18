@@ -22,6 +22,7 @@ script(type="text/x-template")#slider-display
           :works="works"
           :current-work="currentWork"
           @displayWork="$emit('displayWork')"
+          @enter-work="enterWork"
         )
         btns(
           @slide="$emit('slide', $event)"
@@ -29,7 +30,11 @@ script(type="text/x-template")#slider-display
 
 script(type="text/x-template")#slider-previews  
   .slider__preview
-    ul.slider__preview-list
+    transition-group(
+      tag="ul"
+      :css="false"
+      @enter="$emit('enter-work')"
+    ).slider__preview-list
       li.slider__preview-item(
         v-for="work in works"
         :key="work.id"

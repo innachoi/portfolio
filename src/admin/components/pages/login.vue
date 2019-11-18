@@ -8,9 +8,11 @@
           .form__row.login__form-row.login__form-row--login
             label.form__input-wrapper.login__form-wrapper Логин
               input(type="text" v-model="user.name").form__input.login__form-input
+              .error {{ validation.firstError('user.name') }}
           .form__row.login__form-row.login__form-row--password
             label.form__input-wrapper.login__form-wrapper Пароль
               input(type="text" v-model="user.password").form__input.login__form-input
+              .error {{ validation.firstError('user.password') }}
           .login__form-btn
             button(type="submit").bigbtn.login__send-btn ОТПРАВИТЬ
 </template>
@@ -26,20 +28,32 @@ export default {
       password: ""
     }
   }),
+  validators: {
+    'user.name': function(value) {
+      return Validator.value(value).required('Введите логин');
+    },
+    'user.password': function(value) {
+      return Validator.value(value).required('Введите пароль');
+    },
+  },
   methods: {
     async login() {
-      try {
-        const {
-          data: {token}
-        } = await $axios.post('/login', this.user);
-        // Сохраняем полученный токен
+      const success = this.$validate();
 
-        localStorage.setItem("token", token);
-        $axios.defaults.headers["Authorization"] = `Bearer ${token}`;
-
-        this.router.replace("/");
-      } catch (error) {
-        // вывести ошибку!!!
+      if(success) {
+        try {
+          const {
+            data: {token}
+          } = await $axios.post('/login', this.user);
+          // Сохраняем полученный токен
+  
+          localStorage.setItem("token", token);
+          $axios.defaults.headers["Authorization"] = `Bearer ${token}`;
+  
+          this.router.replace("/");
+        } catch (error) {
+          // вывести ошибку!!!
+        }
       }
     }
   }

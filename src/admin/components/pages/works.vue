@@ -16,19 +16,23 @@
               .form__row
                 label.form__block
                   .form__block-title Название
-                  input.form__input(type="text" v-model="work.name" name="workName" required) 
+                  input.form__input(type="text" v-model="work.name" name="workName")
+                  .error {{ validation.firstError('work.name') }}
               .form__row
                 label.form__block
                   .form__block-title Ссылка
-                  input.form__input(type="text" v-model="work.link" name="workLink" required) 
+                  input.form__input(type="text" v-model="work.link" name="workLink") 
+                  .error {{ validation.firstError('work.link') }}
               .form__row
                 label.form__block
                   .form__block-title Описание
-                  textarea.form__input.form__textarea(type="text" v-model="work.desc" name="workDesc" required) 
+                  textarea.form__input.form__textarea(type="text" v-model="work.desc" name="workDesc") 
+                  .error {{ validation.firstError('work.desc') }}
               .form__row
                 label.form__block
                   .form__block-title Добавление тега
-                  input.form__input(type="text" v-model="work.tags" name="workLink" required) 
+                  input.form__input(type="text" v-model="work.tags" name="workTags") 
+                  .error {{ validation.firstError('work.tags') }}
               .form__row
                 button.form__btn-reset(type="reset") Отмена
                 button.bigbtn.form__btn-submit(type="submit") СОХРАНИТЬ
@@ -68,6 +72,7 @@ import { Validator } from 'simple-vue-validator';
 
 export default {
   name: 'works',
+  mixins: [require("simple-vue-validator").mixin],
   data() {
     return {
       work: {
@@ -79,6 +84,9 @@ export default {
     }
   },
   validators: {
+    'work.photo': function(value) {
+      return Validator.value(value).required('Загрузите фото');
+    },
     'work.name': function(value) {
       return Validator.value(value).required('Заполните поле перед отправкой');
     },

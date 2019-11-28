@@ -1,0 +1,81 @@
+script(type="text/x-template")#slider-container
+  .portfolio__wrapper
+    display(
+      :works="works"
+      :current-work="currentWork"
+      :current-index="currentIndex"
+      @slide="handleSlide"
+      @before-cb="beforeCb"
+      @enter-work="enterWork"
+      @after-cb="afterCb"
+      @leave-cb="leaveCb"
+    )
+    info(
+      :current-work="currentWork"
+    )
+  
+
+      
+script(type="text/x-template")#slider-display
+  .portfolio__left(:data-slide="currentIndex + 1")
+    .portfolio__slider.slider
+      .slider__window
+        img.slider__window-pic(:src="currentWork.photo")
+        previews(
+          :works="works"
+          :current-work="currentWork"
+          @before-cb="$emit('before-cb', $event)"
+          @enter-work="$emit('enter-work', $event)"
+          @after-cb="$emit('after-cb', $event)"
+          @leave-cb="$emit('leave-cb', $event)"
+        )
+        btns(
+          @slide="$emit('slide', $event)"
+        )
+
+script(type="text/x-template")#slider-previews  
+  .slider__preview
+    transition-group(
+      tag="ul"
+      :css="false"
+      @before-enter="$emit('before-cb', $event)"
+      @enter="$emit('enter-work')"
+      @after-enter="$emit('after-cb')"
+      @leave-enter="$emit('leave-cb')"
+    ).slider__preview-list
+      li.slider__preview-item(
+        v-for="work in works"
+        :key="work.id"
+        :class="{active: work.id === currentWork.id }"
+      )
+        a.slider__preview-link
+          img.slider__preview-pic(:src="work.photo")
+
+script(type="text/x-template")#slider-btns
+  .slider__btns
+    button.slider__btns--direction--prev(
+      @click.prevent="$emit('slide', 'prev')"
+      :disabled="disabled"
+      )
+      +icon('short_arrow', 'slider__btns--icon slider__btns--icon--prev')
+    button.slider__btns--direction--next(@click.prevent="$emit('slide', 'next')")
+      +icon('short_arrow', 'slider__btns--icon slider__btns--icon--next')
+
+script(type="text/x-template")#slider-info
+  .portfolio__right
+      .portfolio__project.school
+        tags(
+          :tags="tagsArray"
+        )
+        .portfolio__project-desc.school__desc
+          .h3.subtitle.portfolio__project-subtitle {{currentWork.title}}
+          .school__about-project
+            p {{currentWork.desc}}
+        a.project__link(:href="currentWork.link")
+            +icon('link', 'project__link-icon')
+            span.project__link-text Посмотреть сайт
+
+script(type="text/x-template")#slider-tags
+  ul(class=`tags__list`)
+    li.tags__item(v-for="tag in tags" :key="tag")
+      .tags__item-name {{tag}}

@@ -40,7 +40,7 @@ html(lang="en")
                 .welcome__text--position--under веб-разработчика
               .welcome__me
                 .welcome__me-name Инна
-                .welcome__me-lname Цой
+                .welcome__me-name Цой
             .welcome__btns
               .scroll
                 a.scroll__nav
@@ -82,40 +82,36 @@ html(lang="en")
               .skills__desc
                 p Этот сайт я сделалa в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
             #skills-component
-            //- .skills__graphs
-            //-   .skills__area.skills__area--front-end
-            //-     h4.skills__subtitle.subtitle-two Front-end
-            //-     +skillsGraphs("front-end", ["html", "css", "js", "jquery"], ["HTML5", "CSS3", "Javascript", "Jquery и Vue.js"])
-            //-   .skills__area.skills__area--workflow
-            //-     h4.skills__subtitle.subtitle-two Workflow
-            //-     +skillsGraphs("workflow", ["git", "terminal", "gulp", "webpack"], ["GIT", "Terminal", "Gulp", "Webpack"])
 
         //- section Portfolio
         section.portfolio
           .container.portfolio__container
             h2.title.portfolio__title Мои Работы
-            .portfolio__wrapper
-              .portfolio__left
-                .portfolio__slider.slider
-                  .slider__window
-                    +image('content/portfolio_pr0.jpg', 'slider__window-pic')
-                    .slider__preview
-                      +sliderPreview(["0", "1", "2", "3"])
-                    .slider__btns
-                      button.slider__btns--direction--prev
-                        +icon('short_arrow', 'slider__btns--icon slider__btns--icon--prev')
-                      button.slider__btns--direction--next
-                        +icon('short_arrow', 'slider__btns--icon slider__btns--icon--next')
-              .portfolio__right
-                .portfolio__project.school
-                  +projectTags("school", ["HTML", "CSS", "Javascript"])
-                  .portfolio__project-desc.school__desc
-                    .h3.subtitle.portfolio__project-subtitle Сайт школы образования
-                    .school__about-project
-                      p Эта девушка проходила обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!
-                  a.project__link(href="#")
-                      +icon('link', 'project__link-icon')
-                      span.project__link-text Посмотреть сайт
+              #slider-component
+              
+            //- .portfolio__wrapper
+            //-   .portfolio__left
+                //- .portfolio__slider.slider
+                //-   .slider__window
+                //-     +image('content/portfolio_pr1.jpg', 'slider__window-pic')
+                //-     .slider__preview
+                //-       +sliderPreview(["0", "1", "2", "3"])
+                //-     .slider__btns
+                //-       button.slider__btns--direction--prev
+                //-         +icon('short_arrow', 'slider__btns--icon slider__btns--icon--prev')
+                //-       button.slider__btns--direction--next
+                //-         +icon('short_arrow', 'slider__btns--icon slider__btns--icon--next')
+
+              //- .portfolio__right
+              //-   .portfolio__project.school
+              //-     +projectTags("school", ["HTML", "CSS", "Javascript"])
+              //-     .portfolio__project-desc.school__desc
+              //-       .h3.subtitle.portfolio__project-subtitle Сайт школы образования
+              //-       .school__about-project
+              //-         p Эта девушка проходила обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!
+              //-     a.project__link(href="#")
+              //-         +icon('link', 'project__link-icon')
+              //-         span.project__link-text Посмотреть сайт
         
         //- section Comments
         .sections-wrapper--two
@@ -128,16 +124,16 @@ html(lang="en")
                   .form__block-wrapper
                     label.form__block
                       .form__block-title Введите ваше имя
-                      input.form__input.form__input--name(type="text" name="name" placeholder="Дмитрий Ковальчук" required)
+                      input.form__input.form__input--name(type="text" name="commentName" placeholder="Дмитрий Ковальчук" required)
                   .form__block-wrapper
                     label.form__block
                       .form__block-title Введите ваш email
-                      input.form__input.form__input--email(type="text" name="email" placeholder="loftschool@study.com" required)
+                      input.form__input.form__input--email(type="text" name="commentEmail" placeholder="loftschool@study.com" required)
                 .form__row
                   .form__block-wrapper
                     label.form__block.form__block-textarea
                       .form__block-title Сообщение к письму
-                      textarea.form__input.form__textarea(name="comment" placeholder="Требуется помощь в создании сайта. Интересуют сроки и цена вопроса")
+                      textarea.form__input.form__textarea(name="commentComment" placeholder="Требуется помощь в создании сайта. Интересуют сроки и цена вопроса")
                 .form__row
                   button.form__submit(type="submit") ОТПРАВИТЬ
           
